@@ -52,8 +52,6 @@ style window:
     xfill True
     yalign 1.0
 
-    # background Image("portrait-mode-ui/ui/say.png", xysize=(config.screen_width, config.screen_height * 1080.0/config.screen_width), yalign=1.0, yoffset=(-125.0 + (591-495))/1920 * config.screen_height)
-    # background Frame("portrait-mode-ui/ui/say.png", xysize=(config.screen_width, config.screen_height * 1080.0/config.screen_width))
     background Frame("portrait-mode-ui/ui/say.png",
         xysize=(config.screen_width, int(591.0 * pmui.scale)),
         yoffset=int((-125.0 + (591-495)) * pmui.scale),
@@ -66,8 +64,6 @@ style namebox:
     yalign 1.0
 
 style say_label:
-    # properties gui.text_properties("name", accent=True)
-    #xalign gui.name_xalign
     yalign 1.0
     size 50 * pmui.scale
     color pmui.name_color
@@ -75,8 +71,7 @@ style say_label:
     bold True
 
 style say_dialogue:
-    properties gui.text_properties("dialogue")
-
-    xpos gui.dialogue_xpos
-    xsize gui.dialogue_width
-    ypos gui.dialogue_ypos
+    size 60 * pmui.scale
+    xpos int(70.0 * pmui.scale)
+    ypos int(1500.0 * pmui.scale)
+    xsize int((1080 - 70 - 70) * pmui.scale)

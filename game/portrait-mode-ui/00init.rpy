@@ -6,12 +6,6 @@
 ## to run before init statements in any other file.
 init offset = -2
 
-## Calling gui.init resets the styles to sensible default values, and sets the
-## width and height of the game.
-init python:
-    #gui.init(1080, 1920)
-    gui.init(720, 1280)
-
 define pmui.scale = config.screen_width / 1080.0
 
 ## Colors ######################################################################

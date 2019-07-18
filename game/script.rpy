@@ -28,7 +28,9 @@ label start:
 
     c "Once you add a story, pictures, and music, you can release it to the world!"
 
-    c "I like {tt}coding{/tt}!"
+    c "I like {code}coding{/code}!"
+
+    c "Making sure that the {tt}xsize{/tt} of theiii dialogue is correct by putting iniiiii extra {tt}i{/tt}s."
 
     # This ends the game.
 
