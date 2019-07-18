@@ -52,7 +52,7 @@ style window:
     xfill True
     yalign 1.0
 
-    background Frame("portrait-mode-ui/ui/say.png",
+    background Frame("portrait-mode-ui/ui/bg-say.png",
         xysize=(config.screen_width, int(591.0 * pmui.scale)),
         yoffset=int((-125.0 + (591-495)) * pmui.scale),
         yalign=1.0)

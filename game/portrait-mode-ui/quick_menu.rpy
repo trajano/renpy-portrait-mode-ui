@@ -1,9 +1,5 @@
 ﻿init offset = -1
 
-################################################################################
-## In-game screens
-################################################################################
-
 ## Quick Menu screen ###########################################################
 ##
 ## The quick menu is displayed in-game to provide easy access to the out-of-game
@@ -14,23 +10,22 @@ screen quick_menu():
     ## Ensure this appears on top of other screens.
     zorder 100
 
-    if quick_menu:
-
+    style_prefix "quick"
+    frame:
+        xpadding int(50 * pmui.scale)
         hbox:
-            style_prefix "quick"
+            xfill True
+            yoffset int((100.0-72)/2 * pmui.scale)
+            hbox:
+                spacing int(100 * pmui.scale)
+                imagebutton auto "button back %s" action Rollback()
+                imagebutton auto "button auto_forward %s" action Skip() alternate Skip(fast=True, confirm=True)
 
-            xalign 0.5
-            yalign 1.0
-
-            textbutton _("Back") action Rollback()
-            textbutton _("History") action ShowMenu('history')
-            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Auto") action Preference("auto-forward", "toggle")
-            textbutton _("Save") action ShowMenu('save')
-            textbutton _("Q.Save") action QuickSave()
-            textbutton _("Q.Load") action QuickLoad()
-            textbutton _("Prefs") action ShowMenu('preferences')
-
+            hbox:
+                xalign 1.0
+                spacing int(100 * pmui.scale)
+                imagebutton auto "button history %s" action ShowMenu('history')
+                imagebutton auto "button show_menu %s" action ShowMenu()
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
 ## the player has not explicitly hidden the interface.
@@ -42,8 +37,12 @@ default quick_menu = True
 style quick_button is default
 style quick_button_text is button_text
 
-style quick_button:
-    properties gui.button_properties("quick_button")
+style quick_frame:
+    background Frame("portrait-mode-ui/ui/bg-quick-menu.png", 0, 0, 0, int(28 * pmui.scale))
+    xfill True
+    ysize int(128 * pmui.scale)
+    yalign 0.0
 
-style quick_button_text:
-    properties gui.button_text_properties("quick_button")
+style quick_hbox:
+    background "color #ff0000"
+    spacing 0
