@@ -32,11 +32,7 @@ screen say(who, what):
 
         text what id "what"
 
-
-    ## If there's a side image, display it above the text. Do not display on the
-    ## phone variant - there's no room.
-    if not renpy.variant("small"):
-        add AlphaMask(SideImage(), "portrait-mode-ui/ui/say-side-mask.png") zoom config.screen_width/1080.0 xalign 0.0 yalign 1.0 alpha 0.2 xoffset int(40.0/1080 * config.screen_width) yoffset int(-125.0/1920 * config.screen_height)
+    add AlphaMask(SideImage(), "portrait-mode-ui/ui/say-side-mask.png") zoom config.screen_width/1080.0 xalign 0.0 yalign 1.0 alpha 0.2 xoffset int(40.0/1080 * config.screen_width) yoffset int(-125.0/1920 * config.screen_height)
 
 
 ## Make the namebox available for styling through the Character object.
