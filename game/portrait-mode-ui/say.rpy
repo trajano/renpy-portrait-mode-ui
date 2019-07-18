@@ -32,7 +32,7 @@ screen say(who, what):
 
         text what id "what"
 
-    add AlphaMask(SideImage(), "portrait-mode-ui/ui/say-side-mask.png") zoom config.screen_width/1080.0 xalign 0.0 yalign 1.0 alpha 0.2 xoffset int(40.0/1080 * config.screen_width) yoffset int(-125.0/1920 * config.screen_height)
+    add AlphaMask(SideImage(), "portrait-mode-ui/ui/say-side-mask.png") zoom pmui.scale xalign 0.0 yalign 1.0 alpha 0.2 xoffset int(40.0 * pmui.scale) yoffset int(-125.0 * pmui.scale)
 
 
 ## Make the namebox available for styling through the Character object.
@@ -55,24 +55,24 @@ style window:
     # background Image("portrait-mode-ui/ui/say.png", xysize=(config.screen_width, config.screen_height * 1080.0/config.screen_width), yalign=1.0, yoffset=(-125.0 + (591-495))/1920 * config.screen_height)
     # background Frame("portrait-mode-ui/ui/say.png", xysize=(config.screen_width, config.screen_height * 1080.0/config.screen_width))
     background Frame("portrait-mode-ui/ui/say.png",
-        xysize=(config.screen_width, int(591.0/1920 * config.screen_height)),
-        yoffset=int((-125.0 + (591-495))/1920 * config.screen_height),
+        xysize=(config.screen_width, int(591.0 * pmui.scale)),
+        yoffset=int((-125.0 + (591-495)) * pmui.scale),
         yalign=1.0)
 
 style namebox:
-    xpos gui.name_xpos
-    xanchor gui.name_xalign
-    xsize gui.namebox_width
-    ypos gui.name_ypos
-    ysize gui.namebox_height
-
-    background Frame("gui/namebox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
-    padding gui.namebox_borders.padding
+    xpos int(75.0 * pmui.scale)
+    xalign 0.0
+    ypos int(1475.0 * pmui.scale)
+    yalign 1.0
 
 style say_label:
-    properties gui.text_properties("name", accent=True)
-    xalign gui.name_xalign
-    yalign 0.5
+    # properties gui.text_properties("name", accent=True)
+    #xalign gui.name_xalign
+    yalign 1.0
+    size 50 * pmui.scale
+    color pmui.name_color
+    kerning -1
+    bold True
 
 style say_dialogue:
     properties gui.text_properties("dialogue")

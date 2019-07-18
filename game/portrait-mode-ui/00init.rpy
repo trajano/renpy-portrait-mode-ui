@@ -12,6 +12,8 @@ init python:
     #gui.init(1080, 1920)
     gui.init(720, 1280)
 
+define pmui.scale = config.screen_width / 1080.0
+
 ## Colors ######################################################################
 ##
 ## The colors of text in the interface.

@@ -10,6 +10,9 @@ init offset = -2
 ##
 ## The colors of text in the interface.
 
+## Color for the name in the dialogue
+define pmui.name_color = '#101010'
+
 ## An accent color used throughout the interface to label and highlight text.
 define pmui.accent_color = '#0099cc'
 
