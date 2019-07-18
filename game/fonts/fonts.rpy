@@ -9,3 +9,4 @@ init python:
         return [ (renpy.TEXT_TAG, u"font=fonts/Inconsolata-Regular.ttf") ] + contents + [ (renpy.TEXT_TAG, u"/font") ]
 
     config.custom_text_tags["tt"] = coder_font
+    config.custom_text_tags["code"] = coder_font
