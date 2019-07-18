@@ -53,12 +53,15 @@ style namebox_label is say_label
 
 
 style window:
-    xalign 0.5
     xfill True
-    yalign gui.textbox_yalign
-    ysize gui.textbox_height
+    yalign 1.0
 
-    background Image("gui/textbox.png", xalign=0.5, yalign=1.0)
+    # background Image("portrait-mode-ui/ui/say.png", xysize=(config.screen_width, config.screen_height * 1080.0/config.screen_width), yalign=1.0, yoffset=(-125.0 + (591-495))/1920 * config.screen_height)
+    # background Frame("portrait-mode-ui/ui/say.png", xysize=(config.screen_width, config.screen_height * 1080.0/config.screen_width))
+    background Frame("portrait-mode-ui/ui/say.png",
+        xysize=(config.screen_width, int(591.0/1920 * config.screen_height)),
+        yoffset=int((-125.0 + (591-495))/1920 * config.screen_height),
+        yalign=1.0)
 
 style namebox:
     xpos gui.name_xpos
