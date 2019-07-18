@@ -6,7 +6,7 @@
 
 style default:
     properties gui.text_properties()
-    language gui.language
+    language pmui.language
 
 style input:
     properties gui.text_properties("input", accent=True)
