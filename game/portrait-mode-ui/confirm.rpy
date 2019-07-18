@@ -59,9 +59,11 @@ style confirm_frame:
 style confirm_prompt_text:
     text_align 0.5
     layout "subtitle"
+    size 40 * pmui.scale
 
 style confirm_button:
     properties gui.button_properties("confirm_button")
 
 style confirm_button_text:
     properties gui.button_text_properties("confirm_button")
+    size 50 * pmui.scale
