@@ -28,6 +28,8 @@ label start:
 
     c "Once you add a story, pictures, and music, you can release it to the world!"
 
+    c "I like {tt}coding{/tt}!"
+
     # This ends the game.
 
     return
