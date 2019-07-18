@@ -1,2 +1,9 @@
-# The side image should be 20% of the screen width to match what would normally be used in Ren'py default
-image side candace = Crop((318, 149, 565, 565), "candace happy", zoom=(0.20 * config.screen_width/565))
+# Ren'py default: the side image should be 20% of the screen width to align well with the
+# image side candace = Crop((318, 149, 565, 565), "candace happy", zoom=(gui.name_xpos/565))
+
+# The side image for portrait mode should be 1020 x 315 to match the alpha mask.
+# The alpha mask and scaling will be applied by the library.
+image side candace = Composite(
+    (1020, 315),
+    (1020-800, 0), Crop((0, 300, 800, 315), "candace happy")
+)
