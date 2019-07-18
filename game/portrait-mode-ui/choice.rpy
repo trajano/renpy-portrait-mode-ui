@@ -13,31 +13,58 @@
 ## https://www.renpy.org/doc/html/screen_special.html#choice
 
 screen choice(items):
-    style_prefix "choice"
 
-    vbox:
-        for i in items:
-            textbutton i.caption action i.action
+    if renpy.get_say_image_tag() == None:
+        style_prefix "choice"
+    else:
+        style_prefix "choicesay"
 
+    zorder 40
+
+    frame:
+        vbox:
+            spacing int(10 * pmui.scale)
+            for i in items:
+                textbutton i.caption action i.action
 
 ## When this is true, menu captions will be spoken by the narrator. When false,
 ## menu captions will be displayed as empty buttons.
 define config.narrator_menu = True
 
-
-style choice_vbox is vbox
-style choice_button is button
+style choice_say_button is choice_button
 style choice_button_text is button_text
 
-style choice_vbox:
-    xalign 0.5
-    ypos 228
-    yanchor 0.5
+style choice_frame:
+    background Frame("portrait-mode-ui/ui/bg-choice.png", 50, 50, 50,  100)
+    xalign 1.0
+    xsize int(648 * pmui.scale)
+    yalign 0.5
+    left_padding int(25 * pmui.scale)
+    top_padding int(50 * pmui.scale)
+    bottom_padding int(75 * pmui.scale)
 
-    spacing gui.choice_spacing
+style choicesay_frame is choice_frame:
+    yalign 1.0
+    bottom_padding 75 + int(220 * pmui.scale)
+    yoffset int(-240.0  * pmui.scale)
 
 style choice_button is default:
-    properties gui.button_properties("choice_button")
+    selected_background Frame("portrait-mode-ui/ui/bg-choice-selected.png", 380-345+10, 10, 5, 10)
+    hover_background Frame("portrait-mode-ui/ui/bg-choice-selected.png", 380-345+10, 10, 5, 10)
+    left_padding int((380-345+10) * pmui.scale)
+    top_padding int(30 * pmui.scale)
+    bottom_padding int(60 * pmui.scale)
+    yalign 0.5
+    xfill True
+    color "#ffffff"
+    hover_color "#ffff00"
+
+style choicesay_button is choice_button
 
 style choice_button_text is default:
-    properties gui.button_text_properties("choice_button")
+    color "#ffffff"
+    hover_color "#000000"
+    selected_color "#000000"
+    size 50 * pmui.scale
+
+style choicesay_button_text is choice_button_text

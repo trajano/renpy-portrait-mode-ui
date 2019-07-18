@@ -32,6 +32,19 @@ label start:
 
     c "Making sure that the {tt}xsize{/tt} of theiii dialogue is correct by putting iniiiii extra {tt}i{/tt}s."
 
+    menu:
+        "yES, I'd like that very very much":
+            c "You said yes"
+        "NO":
+            c "You said no"
+
+    menu:
+        c "This time with caption"
+        "YES":
+            c "You said yes"
+        "NO":
+            c "You said no"
+
     # This ends the game.
 
     return

@@ -20,6 +20,7 @@
 screen say(who, what):
     style_prefix "say"
 
+    zorder 45
     window:
         id "window"
 

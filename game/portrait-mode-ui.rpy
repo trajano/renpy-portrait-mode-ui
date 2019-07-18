@@ -1,6 +1,8 @@
 ################################################################################
-## Initialization
+## Customizations
 ################################################################################
+
+# This file controls the customizable values for the portrait-mode-ui
 
 ## The init offset statement causes the initialization statements in this file
 ## to run before init statements in any other file.
@@ -18,6 +20,9 @@ init python:
 
 ## Color for the name in the dialogue
 define pmui.name_color = '#101010'
+
+## Color for choice action
+define pmui.choice_color = '#efefef'
 
 ## An accent color used throughout the interface to label and highlight text.
 define pmui.accent_color = '#0099cc'
