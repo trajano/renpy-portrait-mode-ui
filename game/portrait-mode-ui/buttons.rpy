@@ -2,6 +2,14 @@ init python in pmui:
     import renpy.display.im as im
     from renpy.display.imagelike import Solid
     import renpy.config as config
+    from renpy.color import Color
+
+    state_colors = {
+        "idle" : Color(idle_color),
+        "hover" : Color(hover_color),
+        "selected" : Color(selected_color),
+        "insensitive" : Color(insensitive_color),
+    }
 
     buttons = {
         "back": "portrait-mode-ui/ui/twotone_skip_previous_white_24.png",
@@ -17,10 +25,15 @@ init python in pmui:
         "show_main_menu": "portrait-mode-ui/ui/twotone_home_white_24.png",
     }
     for key, file in buttons.iteritems():
-        renpy.image("button %s idle" % (key), im.FactorScale(file, scale))
-        renpy.image("button %s insensitive" % (key), im.FactorScale(im.MatrixColor(file, im.matrix.brightness(-0.5)), scale))
-        renpy.image("button %s hover" % (key), im.FactorScale(im.MatrixColor(file, im.matrix.tint(1.0, 1.0, 0.75)), scale))
-        renpy.image("button %s selected_hover" % (key), im.FactorScale(im.MatrixColor(file, im.matrix.tint(1.0, 1.0, 0.75)), scale))
+        for state, color in state_colors.iteritems():
+            renpy.image("button %s %s" % (key, state),
+                im.FactorScale(
+                    im.MatrixColor(file,
+                        im.matrix.tint(color.rgb[0],color.rgb[1],color.rgb[2]) *
+                        im.matrix.opacity(color.alpha)
+                    ),
+                    scale)
+                )
 
     if renpy.variant("pc"):
         file = Solid("#ffffff", xysize=(72, 72))

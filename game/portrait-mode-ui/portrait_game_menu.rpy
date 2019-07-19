@@ -4,7 +4,7 @@
 ##
 ## The quick menu is displayed in-game to provide easy access to the out-of-game
 ## menus.
-screen portrait_game_menu():
+screen portrait_game_menu(title = None):
 
     ## Ensure this appears on top of other screens.
     zorder 100
@@ -27,7 +27,6 @@ screen portrait_game_menu():
             grid 5 1:
                 xfill True
                 yoffset int((100.0-72)/2 * 3 * pmui.scale)
-                style_prefix "gamemenuitems"
                 vbox:
                     xalign 0.5
                     imagebutton auto "button show_main_menu %s" xalign 0.5 action MainMenu()
@@ -39,15 +38,24 @@ screen portrait_game_menu():
                 vbox:
                     xalign 0.5
                     imagebutton auto "button save %s" xalign 0.5 action ShowMenu("save")
-                    textbutton "Save" text_size 30 * pmui.scale text_kerning -1 text_color "#ffffff" xalign 0.5 action ShowMenu("save")
+                    textbutton _("Save") text_size 30 * pmui.scale text_kerning -1  xalign 0.5 action ShowMenu("save")
                 vbox:
                     xalign 0.5
                     imagebutton auto "button load %s" xalign 0.5 action ShowMenu("load")
-                    textbutton "Load" text_size 30 * pmui.scale text_kerning -1 text_color "#ffffff" xalign 0.5 action ShowMenu("load")
+                    textbutton _("Load") text_size 30 * pmui.scale text_kerning -1 xalign 0.5 action ShowMenu("load")
                 vbox:
                     xalign 0.5
                     imagebutton auto "button settings %s" xalign 0.5 action ShowMenu("preferences")
-                    textbutton "Settings" text_size 30 * pmui.scale text_kerning -1 text_color "#ffffff" xalign 0.5 action ShowMenu("preferences")
+                    textbutton "Settings" action ShowMenu("preferences")
 
 style gamemenu_frame is quick_frame:
     ysize int((128 + 100 + 12 + 28) * pmui.scale)
+
+style gamemenu_button_text:
+    idle_color pmui.idle_color
+    selected_color "#ffffff"
+    kerning -1
+    xalign 0.5
+    size 30 * pmui.scale
+    selected_bold True
+    hover_bold True
