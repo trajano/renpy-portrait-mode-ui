@@ -17,8 +17,8 @@
 screen input(prompt):
     style_prefix "input"
 
-    zorder 100
     window:
+        ycenter 0.5
         vbox:
             # yalign 1.0
             xalign 0.0
