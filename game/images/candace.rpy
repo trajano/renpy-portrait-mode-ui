@@ -5,5 +5,6 @@
 # The alpha mask and scaling will be applied by the library.
 image side candace = Composite(
     (1020, 315),
-    (1020-800, 0), Crop((0, 300, 800, 315), "candace happy")
+    #(1020-800, 0), Crop((0, 300, 800, 315), "candace happy", yoffset=-200)
+    (0, 0), Crop((0, 400, 800, 315), "candace happy", zoom=2.0, xoffset=-300)
 )
