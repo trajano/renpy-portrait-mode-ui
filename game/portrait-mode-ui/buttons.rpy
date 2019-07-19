@@ -14,12 +14,17 @@ init python in pmui:
 
     buttons = {
         "back": "portrait-mode-ui/ui/twotone_skip_previous_white_24.png",
+        "big back": "portrait-mode-ui/ui/twotone_skip_previous_white_36.png",
         "top": "portrait-mode-ui/ui/twotone_skip_previous_white_24.png",
         "bottom": "portrait-mode-ui/ui/twotone_skip_previous_white_24.png",
         "auto_forward": "portrait-mode-ui/ui/twotone_fast_forward_white_24.png",
+        "big auto_forward": "portrait-mode-ui/ui/twotone_fast_forward_white_36.png",
         "show_menu": "portrait-mode-ui/ui/twotone_menu_white_24.png",
+        "big show_menu": "portrait-mode-ui/ui/twotone_menu_white_36.png",
         "exit_to_game": "portrait-mode-ui/ui/twotone_exit_to_app_white_24.png",
+        "big exit_to_game": "portrait-mode-ui/ui/twotone_exit_to_app_white_36.png",
         "history": "portrait-mode-ui/ui/twotone_history_white_24.png",
+        "big history": "portrait-mode-ui/ui/twotone_history_white_36.png",
         "save": "portrait-mode-ui/ui/twotone_cloud_download_white_24.png",
         "load": "portrait-mode-ui/ui/twotone_cloud_upload_white_24.png",
         "settings": "portrait-mode-ui/ui/twotone_settings_white_24.png",

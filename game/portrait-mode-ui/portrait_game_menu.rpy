@@ -15,18 +15,18 @@ screen portrait_game_menu(title = None):
         vbox:
             hbox:
                 xfill True
-                yoffset int((100.0-72)/2 * pmui.scale)
+                yoffset int((pmui.quick_menu_bar_size - pmui.quick_menu_icon_size)/2 * pmui.scale)
                 hbox:
                     spacing int(100 * pmui.scale)
-                    imagebutton auto "button exit_to_game %s" action Return()
+                    imagebutton auto "button big exit_to_game %s" action Return()
 
                 hbox:
                     xalign 1.0
                     spacing int(100 * pmui.scale)
-                    imagebutton auto "button show_menu %s" action Return()
+                    imagebutton auto "button big show_menu %s" action Return()
             grid 5 1:
                 xfill True
-                yoffset int((100.0-72)/2 * 3 * pmui.scale)
+                yoffset int((pmui.game_menu_quick_menu_gap_size) * pmui.scale)
                 vbox:
                     xalign 0.5
                     imagebutton auto "button show_main_menu %s" xalign 0.5 action MainMenu()
@@ -49,7 +49,7 @@ screen portrait_game_menu(title = None):
                     textbutton "Settings" action ShowMenu("preferences")
 
 style gamemenu_frame is quick_frame:
-    ysize int((128 + 100 + 12 + 28) * pmui.scale)
+    ysize int((pmui.quick_menu_bar_size + pmui.game_menu_quick_menu_gap_size + pmui.game_menu_button_bar_icon_size + pmui.game_menu_button_bar_text_size + 28) * pmui.scale)
 
 style gamemenu_button_text:
     idle_color pmui.idle_color
@@ -58,6 +58,6 @@ style gamemenu_button_text:
     insensitive_color pmui.insensitive_color
     hover_color pmui.hover_color
     xalign 0.5
-    size 30 * pmui.scale
+    size pmui.game_menu_button_bar_text_size * pmui.scale
     selected_bold True
     selected_idle_bold True
