@@ -11,6 +11,10 @@ init python in pmui:
         "show_menu": "portrait-mode-ui/ui/twotone_menu_white_24.png",
         "exit_to_game": "portrait-mode-ui/ui/twotone_exit_to_app_white_24.png",
         "history": "portrait-mode-ui/ui/twotone_history_white_24.png",
+        "save": "portrait-mode-ui/ui/twotone_cloud_download_white_24.png",
+        "load": "portrait-mode-ui/ui/twotone_cloud_upload_white_24.png",
+        "settings": "portrait-mode-ui/ui/twotone_settings_white_24.png",
+        "show_main_menu": "portrait-mode-ui/ui/twotone_home_white_24.png",
     }
     for key, file in buttons.iteritems():
         renpy.image("button %s idle" % (key), im.FactorScale(file, scale))
@@ -18,8 +22,9 @@ init python in pmui:
         renpy.image("button %s hover" % (key), im.FactorScale(im.MatrixColor(file, im.matrix.tint(1.0, 1.0, 0.75)), scale))
         renpy.image("button %s selected_hover" % (key), im.FactorScale(im.MatrixColor(file, im.matrix.tint(1.0, 1.0, 0.75)), scale))
 
-    file = Solid("#ffffff", xysize=(72, 72))
-    renpy.image("button test idle", file)
-    renpy.image("button test insensitive", file)
-    renpy.image("button test hover", file)
-    renpy.image("button test selected_hover", file)
+    if renpy.variant("pc"):
+        file = Solid("#ffffff", xysize=(72, 72))
+        renpy.image("button test idle", file)
+        renpy.image("button test insensitive", file)
+        renpy.image("button test hover", file)
+        renpy.image("button test selected_hover", file)

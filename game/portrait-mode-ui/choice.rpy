@@ -56,13 +56,13 @@ style choice_button is default:
     bottom_padding int(60 * pmui.scale)
     yalign 0.5
     xfill True
-    color "#ffffff"
+    color pmui.choice_color
     hover_color "#ffff00"
 
 style choicesay_button is choice_button
 
 style choice_button_text is default:
-    color "#ffffff"
+    color pmui.choice_color
     hover_color "#000000"
     selected_color "#000000"
     size 50 * pmui.scale
