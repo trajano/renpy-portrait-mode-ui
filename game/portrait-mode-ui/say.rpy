@@ -53,10 +53,20 @@ style window:
     xfill True
     yalign 1.0
 
-    background Frame("portrait-mode-ui/ui/bg-say.png",
+    # background im.FactorScale(
+    #         im.MatrixColor("portrait-mode-ui/ui/bg-say.png",
+    #             im.matrix.opacity(0.9)),
+    #         pmui.scale) yoffset int(1080 -125.0 - 591 * pmui.scale)
+
+    background Frame(im.MatrixColor("portrait-mode-ui/ui/bg-say.png", im.matrix.opacity(0.9)),
         xysize=(config.screen_width, int(591.0 * pmui.scale)),
         yoffset=int((-125.0 + (591-495)) * pmui.scale),
         yalign=1.0)
+
+    # background Frame("portrait-mode-ui/ui/bg-say.png",
+    #     xysize=(config.screen_width, int(591.0 * pmui.scale)),
+    #     yoffset=int((-125.0 + (591-495)) * pmui.scale),
+    #     yalign=1.0)
 
 style namebox:
     xpos int(75.0 * pmui.scale)
