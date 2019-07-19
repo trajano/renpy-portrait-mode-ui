@@ -30,19 +30,19 @@ screen portrait_game_menu(title = None):
                 vbox:
                     xalign 0.5
                     imagebutton auto "button show_main_menu %s" xalign 0.5 action MainMenu()
-                    textbutton "Main" text_size 30 * pmui.scale text_kerning -1 text_color "#ffffff" xalign 0.5 action MainMenu()
+                    textbutton "Main" action MainMenu()
                 vbox:
                     xalign 0.5
                     imagebutton auto "button history %s"  xalign 0.5 action ShowMenu("history")
-                    textbutton "History" text_size 30 * pmui.scale text_kerning -1 text_color "#ffffff" xalign 0.5 action ShowMenu("history")
+                    textbutton _("History") action ShowMenu("history")
                 vbox:
                     xalign 0.5
                     imagebutton auto "button save %s" xalign 0.5 action ShowMenu("save")
-                    textbutton _("Save") text_size 30 * pmui.scale text_kerning -1  xalign 0.5 action ShowMenu("save")
+                    textbutton _("Save") action ShowMenu("save")
                 vbox:
                     xalign 0.5
                     imagebutton auto "button load %s" xalign 0.5 action ShowMenu("load")
-                    textbutton _("Load") text_size 30 * pmui.scale text_kerning -1 xalign 0.5 action ShowMenu("load")
+                    textbutton _("Load") action ShowMenu("load")
                 vbox:
                     xalign 0.5
                     imagebutton auto "button settings %s" xalign 0.5 action ShowMenu("preferences")
@@ -53,7 +53,10 @@ style gamemenu_frame is quick_frame:
 
 style gamemenu_button_text:
     idle_color pmui.idle_color
-    selected_color "#ffffff"
+    selected_color pmui.selected_color
+    selected_idle_color pmui.selected_color
+    insensitive_color pmui.insensitive_color
+    hover_color pmui.hover_color
     kerning -1
     xalign 0.5
     size 30 * pmui.scale
