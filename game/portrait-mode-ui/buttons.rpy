@@ -8,6 +8,7 @@ init python in pmui:
         "idle" : Color(idle_color),
         "hover" : Color(hover_color),
         "selected" : Color(selected_color),
+        "selected_idle" : Color(selected_color),
         "insensitive" : Color(insensitive_color),
     }
 
