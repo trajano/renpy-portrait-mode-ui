@@ -16,6 +16,12 @@ label start:
 
     scene bg cave
 
+    show candace happy
+
+    # These display lines of dialogue.
+
+    c "You've created a new Ren'Py game."
+
     # This shows a character sprite. A placeholder is used, but you can
     # replace it by adding a file named "eileen happy.png" to the images
     # directory.
@@ -23,11 +29,7 @@ label start:
         povname = renpy.input("What is your name?")
         povname = povname.strip()
 
-    show candace happy
-
-    # These display lines of dialogue.
-
-    c "You've created a new Ren'Py game."
+    c "Hi [povname]!"
 
     c "Once you add a story, pictures, and music, you can release it to the world!"
 
