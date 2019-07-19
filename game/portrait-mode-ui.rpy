@@ -14,6 +14,11 @@ init python:
     gui.init(1080, 1920)
     # gui.init(720, 1280)
 
+## Console font style.  This should be set otherwise the computed font size makes
+## things unreadable.
+style _console_text:
+    size 40
+
 ## Colors ######################################################################
 ##
 ## The colors of text in the interface.

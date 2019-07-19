@@ -57,8 +57,7 @@ style gamemenu_button_text:
     selected_idle_color pmui.selected_color
     insensitive_color pmui.insensitive_color
     hover_color pmui.hover_color
-    kerning -1
     xalign 0.5
     size 30 * pmui.scale
     selected_bold True
-    hover_bold True
+    selected_idle_bold True

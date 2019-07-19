@@ -17,23 +17,33 @@
 screen input(prompt):
     style_prefix "input"
 
+    zorder 100
     window:
-
         vbox:
-            xalign gui.dialogue_text_xalign
-            xpos gui.dialogue_xpos
-            xsize gui.dialogue_width
-            ypos gui.dialogue_ypos
-
+            # yalign 1.0
+            xalign 0.0
+            xpos int(70.0 * pmui.scale)
+            ypos 0
+            ycenter 0.0
+            # ypos int(1500.0 * pmui.scale)
             text prompt style "input_prompt"
-            input id "input"
+            frame:
+                background "#fff"
+                xsize int((1080 - 70 - 70) * pmui.scale)
+                input id "input" style "input_text"
 
 style input_prompt is default
 
 style input_prompt:
-    xalign gui.dialogue_text_xalign
-    properties gui.text_properties("input_prompt")
+    size 60 * pmui.scale
+    xsize int((1080 - 70 - 70) * pmui.scale)
 
-style input:
-    xalign gui.dialogue_text_xalign
-    xmaximum gui.dialogue_width
+# style input:
+#     xsize int((1080 - 70 - 70) * pmui.scale)
+#     size 30
+
+style input_text:
+    size 60
+
+style _console_text:
+    size 40
