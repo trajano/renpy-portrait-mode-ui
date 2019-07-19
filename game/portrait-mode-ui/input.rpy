@@ -23,27 +23,23 @@ screen input(prompt):
             # yalign 1.0
             xalign 0.0
             xpos int(70.0 * pmui.scale)
-            ypos 0
-            ycenter 0.0
+            ypos int(-190.0 * pmui.scale)
+
             # ypos int(1500.0 * pmui.scale)
             text prompt style "input_prompt"
             frame:
-                background "#fff"
+                background pmui.input_background
                 xsize int((1080 - 70 - 70) * pmui.scale)
+                xpadding int(20 * pmui.scale)
+                ypadding int(10 * pmui.scale)
                 input id "input" style "input_text"
 
-style input_prompt is default
-
 style input_prompt:
-    size 60 * pmui.scale
+    size 50 * pmui.scale
+    yoffset int(-20 * pmui.scale)
     xsize int((1080 - 70 - 70) * pmui.scale)
-
-# style input:
-#     xsize int((1080 - 70 - 70) * pmui.scale)
-#     size 30
 
 style input_text:
     size 60
+    color pmui.input_color
 
-style _console_text:
-    size 40

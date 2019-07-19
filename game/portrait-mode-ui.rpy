@@ -29,6 +29,12 @@ define pmui.name_color = '#101010'
 ## Color for choice action
 define pmui.choice_color = '#efefef'
 
+## Color for input text
+define pmui.input_color = '#101010'
+
+## Color for input background
+define pmui.input_background = '#efefefef'
+
 ## An accent color used throughout the interface to label and highlight text.
 define pmui.accent_color = '#0099cc'
 
