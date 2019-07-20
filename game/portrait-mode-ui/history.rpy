@@ -17,6 +17,7 @@ screen history_test():
     tag menu
 
     use portrait_game_menu(_("History"), scroll=("vpgrid" if gui.history_height else "viewport"), yinitial=1.0):
+        # style_prefix "history"
         vbox:
             #     style_prefix "gamemenux"
             #     # add Solid("#cccccc", xysize=(1000, 2000))
@@ -38,7 +39,9 @@ screen history():
 
         style_prefix "history"
 
-        vbox:
+        frame:
+            xpadding int(50 * pmui.scale)
+            has vbox
             for h in _history_list:
                 if h.who:
 
@@ -64,20 +67,10 @@ screen history():
             if not _history_list:
                 label _("The dialogue history is empty.")
 
-
-## This determines what tags are allowed to be displayed on the history screen.
-
-define gui.history_allow_tags = set()
-
-
 style history_window is empty
 
 style history_name is gui_label
 style history_name_text is gui_label_text
-style history_text is gui_text
-
-style history_text is gui_text
-
 style history_label is gui_label
 style history_label_text is gui_label_text
 
@@ -92,17 +85,11 @@ style history_name:
     xsize gui.history_name_width
 
 style history_name_text:
-    min_width gui.history_name_width
-    text_align gui.history_name_xalign
+    size pmui.name_text_size
 
 style history_text:
-    xpos gui.history_text_xpos
-    ypos gui.history_text_ypos
-    xanchor gui.history_text_xalign
-    xsize gui.history_text_width
-    min_width gui.history_text_width
-    text_align gui.history_text_xalign
-    layout ("subtitle" if gui.history_text_xalign else "tex")
+    color "#ffffff"
+    size pmui.text_size
 
 style history_label:
     xfill True

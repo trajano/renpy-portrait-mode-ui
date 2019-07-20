@@ -4,15 +4,9 @@ init offset = -1
 ##
 ## The quick menu is displayed in-game to provide easy access to the out-of-game
 ## menus.
-screen side_test():
-    side "c tl br t":
-        text "Center" size 40
-        text "Top-Left" size 40
-        text "Bottom-Right" size 40
-        text "Top" size 40
-
 screen portrait_game_menu(title=None, scroll=None, yinitial=0.0):
     tag menu
+    add Solid("#000000cc", xysize=(config.screen_width, config.screen_height))
     side "c t":
         viewport:
             mousewheel True
@@ -66,7 +60,7 @@ screen portrait_game_menu(title=None, scroll=None, yinitial=0.0):
             null height int((pmui.game_menu_quick_menu_gap_size) * pmui.scale)
 
 style gamemenu_frame:
-    background Solid("#000000cc", xysize=(config.screen_width, config.screen_height))
+
     xfill True
     yfill True
 

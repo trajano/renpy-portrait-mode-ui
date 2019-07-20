@@ -76,13 +76,13 @@ style namebox:
 
 style say_label:
     yalign 1.0
-    size 50 * pmui.scale
+    size pmui.name_text_size * pmui.scale
     color pmui.name_color
     kerning -1
     bold True
 
 style say_dialogue:
-    size 60 * pmui.scale
+    size pmui.text_size * pmui.scale
     # yalign 1.0
     xpos int(70.0 * pmui.scale)
     ypos int(1500.0 * pmui.scale)
