@@ -59,7 +59,7 @@ label start:
     c "Maybe put this up on github on the weekend."
     c "I did find that the icons on top are a bit difficult to press though so something to check in a bit."
     c "Some random dialog to make history scroll."
-    c "Some random dialog to make history scroll."
+    c "I think I want the confirmation dialogs to be stlyized like Persona 5 but with blocks of Persona 4."
     c "Some random dialog to make history scroll."
     c "Some random dialog to make history scroll."
     c "Some random dialog to make history scroll."
