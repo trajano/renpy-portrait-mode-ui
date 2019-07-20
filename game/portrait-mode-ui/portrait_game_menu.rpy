@@ -4,20 +4,8 @@ init offset = -1
 ##
 ## The quick menu is displayed in-game to provide easy access to the out-of-game
 ## menus.
-screen portrait_game_menu(title=None, scroll=None, yinitial=0.0):
-    tag menu
-    add Solid("#000000cc", xysize=(config.screen_width, config.screen_height))
-    side "c t":
-        viewport:
-            mousewheel True
-            draggable True
-            pagekeys True
-            scrollbars "vertical"
-            side_yfill True
-            xfill True
-            yinitial yinitial
-            transclude
-        frame style "gamemenu_frame":
+screen portrait_game_navigation(title):
+        frame:
             has vbox
             style_prefix "gamemenu"
             hbox:
@@ -58,6 +46,35 @@ screen portrait_game_menu(title=None, scroll=None, yinitial=0.0):
                     imagebutton auto "button settings %s" xalign 0.5 action ShowMenu("preferences")
                     textbutton _("Settings") action ShowMenu("preferences")
             null height int((pmui.game_menu_quick_menu_gap_size) * pmui.scale)
+
+screen portrait_game_menu(title=None, scroll=None, yinitial=0.0):
+    tag menu
+    add Solid("#000000cc", xysize=(config.screen_width, config.screen_height))
+    side "c t":
+        if scroll == "viewport":
+            viewport:
+                    mousewheel True
+                    draggable True
+                    pagekeys True
+                    scrollbars "vertical"
+                    side_yfill True
+                    xfill True
+                    yinitial yinitial
+                    transclude
+        elif scroll == "vpgrid":
+            vpgrid:
+                cols 3
+                mousewheel True
+                draggable True
+                pagekeys True
+                scrollbars "vertical"
+                side_yfill True
+                xfill True
+                yinitial yinitial
+                transclude
+        else:
+            transclude
+        use portrait_game_navigation(title)
 
 style gamemenu_frame:
 

@@ -25,7 +25,7 @@ screen quick_menu():
                 xalign 1.0
                 spacing int(100 * pmui.scale)
                 imagebutton auto "button big history %s" action ShowMenu("history_test")
-                imagebutton auto "button big show_menu %s" action ShowMenu("portrait_game_menu")
+                imagebutton auto "button big show_menu %s" action ShowMenu()
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
 ## the player has not explicitly hidden the interface.
