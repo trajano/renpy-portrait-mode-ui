@@ -69,10 +69,10 @@ style window:
     #     yalign=1.0)
 
 style namebox:
-    xpos int(75.0 * pmui.scale)
     xalign 0.0
-    ypos int(1475.0 * pmui.scale)
     yalign 1.0
+    xpos int(75.0 * pmui.scale)
+    ypos int(1475.0 * pmui.scale)
 
 style say_label:
     yalign 1.0
@@ -83,6 +83,8 @@ style say_label:
 
 style say_dialogue:
     size 60 * pmui.scale
+    # yalign 1.0
     xpos int(70.0 * pmui.scale)
     ypos int(1500.0 * pmui.scale)
+    # yoffset int(-(1920-1500-50-50.0) * pmui.scale)
     xsize int((1080 - 70 - 70) * pmui.scale)

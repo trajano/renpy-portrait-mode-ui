@@ -25,6 +25,7 @@ init python in pmui:
         "big exit_to_game": "portrait-mode-ui/ui/twotone_exit_to_app_white_36.png",
         "history": "portrait-mode-ui/ui/twotone_history_white_24.png",
         "big history": "portrait-mode-ui/ui/twotone_history_white_36.png",
+        "big rotate": "portrait-mode-ui/ui/twotone_rotate_90_degrees_ccw_white_36.png",
         "save": "portrait-mode-ui/ui/twotone_cloud_download_white_24.png",
         "load": "portrait-mode-ui/ui/twotone_cloud_upload_white_24.png",
         "settings": "portrait-mode-ui/ui/twotone_settings_white_24.png",
