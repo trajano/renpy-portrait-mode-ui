@@ -51,6 +51,8 @@ label start:
             c "You said no"
 
     c "Some random dialog to make history scroll."
+    c "Though history is working, I actually don't really like the way it is rendered."
+    c "Maybe have a background... in fact make each menu screen have its own background."
     c "The next few remaining bits are the history, save/load, preferences and main menu."
     c "I'm leaving it up to the developer to add additional rows to the game menu."
     c "I'm also thinking just make it full screen blackout when in the game menu, just to simply a few things."

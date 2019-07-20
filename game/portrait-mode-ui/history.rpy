@@ -62,7 +62,7 @@ screen history():
                 $ what = renpy.filter_text_tags(h.what, deny=["cps"])
                 text what:
                     substitute False
-                null height 20
+                null height (pmui.text_size * pmui.scale)
 
             if not _history_list:
                 label _("The dialogue history is empty.")
