@@ -1,4 +1,4 @@
-﻿init offset = -1
+init offset = -1
 
 ################################################################################
 ## Main and Game Menu Screens
@@ -67,7 +67,7 @@ screen game_menu(title, scroll=None, yinitial=0.0):
 
                     transclude
 
-    use navigation
+    use game_menu_navigation
 
     textbutton _("Return"):
         style "return_button"
