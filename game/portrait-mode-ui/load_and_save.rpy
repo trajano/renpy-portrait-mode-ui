@@ -16,7 +16,6 @@
 screen save():
 
     tag menu
-
     use file_slots(_("Save"))
 
 
@@ -28,6 +27,26 @@ screen load():
 
 
 screen file_slots(title):
+    use portrait_game_menu(title, scroll="vpgrid", cols = 3):
+        style_prefix "slot"
+        for i in range(pmui.max_saves):
+            $ slot = i + 1
+            button:
+                action FileAction(slot)
+
+                has vbox
+
+                add FileScreenshot(slot) xalign 0.5
+
+                text FileTime(slot, format=_("{#file_time}%Y-%m-%d %H:%M"), empty=_("empty slot")):
+                    style "slot_time_text"
+
+                text FileSaveName(slot):
+                    style "slot_name_text"
+
+                key "save_delete" action FileDelete(slot)
+
+screen file_slots_old(title):
 
     default page_name_value = FilePageNameInputValue(pattern=_("Page {}"), auto=_("Automatic saves"), quick=_("Quick saves"))
 
@@ -130,6 +149,7 @@ style page_button_text:
 
 style slot_button:
     properties gui.button_properties("slot_button")
+    #/3.0
 
 style slot_button_text:
     properties gui.button_text_properties("slot_button")

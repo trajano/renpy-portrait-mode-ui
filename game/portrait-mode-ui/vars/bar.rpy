@@ -8,7 +8,7 @@
 ## The height of horizontal bars, scrollbars, and sliders. The width of vertical
 ## bars, scrollbars, and sliders.
 define gui.bar_size = 22
-define gui.scrollbar_size = 11
+define gui.scrollbar_size = 50
 define gui.slider_size = 22
 
 ## True if bar images should be tiled. False if they should be linearly scaled.

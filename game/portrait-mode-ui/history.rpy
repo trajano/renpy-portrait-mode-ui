@@ -19,8 +19,13 @@ screen history_test():
     use portrait_game_menu(_("History"), scroll=("vpgrid" if gui.history_height else "viewport"), yinitial=1.0):
         style_prefix "history"
         frame:
+            # xpadding int(50 * pmui.scale)
             xpadding int(50 * pmui.scale)
+            # xsize int((1080 - 50 - 50 - gui.scrollbar_size) * pmui.scale)
+            xsize int((1080 - gui.scrollbar_size) * pmui.scale)
             has vbox
+            # add Solid("#ffffcc", width=1000, height=30)
+            # add Tile("bg grid")
             text "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam iaculis quam quis felis bibendum, sed condimentum felis vulputate. Ut non nisi malesuada, euismod eros imperdiet, varius ipsum. Nunc eu ligula et velit suscipit tempor ut sed dolor. Nullam gravida nulla ut enim lacinia, et porta velit pharetra. Vivamus leo lacus, vehicula nec tristique at, fringilla a mauris. Nulla at arcu vel est sodales venenatis. In egestas tempus consequat. Integer nec accumsan ipsum. Integer viverra, ipsum vitae posuere interdum, mauris justo cursus sem, sed ornare leo tellus non ipsum." size 50
             text "Pellentesque auctor tellus enim, vitae facilisis leo imperdiet non. Morbi malesuada nisl ut semper bibendum. Fusce eget erat varius, porta metus vitae, auctor dui. Nulla ullamcorper lectus quis tortor facilisis, eu ultricies massa cursus. Proin in pretium nibh. Sed sodales dictum magna, non viverra quam blandit finibus. Aliquam sit amet placerat odio. Maecenas tortor sem, ultricies vel lectus non, auctor viverra justo. Sed accumsan ullamcorper vehicula. Nam arcu arcu, condimentum at mollis quis, vestibulum vitae odio. Fusce et finibus ante, ac venenatis odio." size 50
             text "Vestibulum non sem blandit, auctor lorem eget, fermentum sem. Nullam lobortis orci ut vestibulum commodo. Nullam pulvinar, nisi eget dictum placerat, orci nisl efficitur lorem, egestas maximus sem tortor at velit. Vivamus efficitur congue erat vitae condimentum. Duis posuere nulla elit, ac commodo dolor molestie ac. Integer non fringilla sem, non efficitur elit. Etiam gravida lacinia felis sed dignissim. Morbi vulputate placerat lorem, vitae tempor dui. Donec velit velit, aliquam vitae maximus et, finibus id ante. Etiam tristique lacus in erat mattis malesuada." size 50
@@ -41,6 +46,7 @@ screen history():
 
         frame:
             xpadding int(50 * pmui.scale)
+            xsize int((1080 - gui.scrollbar_size) * pmui.scale)
             has vbox
             for h in _history_list:
                 if h.who:

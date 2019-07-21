@@ -13,6 +13,7 @@ init offset = -2
 init python:
     gui.init(1080, 1920)
     # gui.init(720, 1280)
+    # gui.init(360, 640)
 
 ## Console font style.  This should be set otherwise the computed font size makes
 ## things unreadable.
@@ -71,3 +72,11 @@ define pmui.interface_text_color = '#ffffff'
 ## www.renpy.org/doc/html/style_properties.html#style-property-language
 
 define pmui.language = "unicode"
+
+## Maximum number of saves.  Must be a multiple of 3 for portrait mode.
+define pmui.max_saves = 99
+define pmui.save_columns = 3
+
+## The height of horizontal bars, scrollbars, and sliders. The width of vertical
+## bars, scrollbars, and sliders.
+define pmui.scrollbar_size = 50

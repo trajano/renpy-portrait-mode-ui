@@ -11,28 +11,29 @@ screen quick_menu():
     zorder 100
 
     style_prefix "quick"
-    frame:
-        xpadding int(50 * pmui.scale)
-        hbox:
-            xfill True
-            yoffset int((pmui.quick_menu_bar_size - pmui.quick_menu_icon_size)/2 * pmui.scale)
+    if pmui.show_quick_menu:
+        frame:
+            xpadding int(50 * pmui.scale)
             hbox:
-                spacing int(100 * pmui.scale)
-                imagebutton auto "button big back %s" action Rollback()
-                imagebutton auto "button big auto_forward %s" action Skip() alternate Skip(fast=True, confirm=True)
+                xfill True
+                yoffset int((pmui.quick_menu_bar_size - pmui.quick_menu_icon_size)/2 * pmui.scale)
+                hbox:
+                    spacing int(100 * pmui.scale)
+                    imagebutton auto "button big back %s" action Rollback()
+                    imagebutton auto "button big auto_forward %s" action Skip() alternate Skip(fast=True, confirm=True)
 
-            hbox:
-                xalign 1.0
-                spacing int(100 * pmui.scale)
-                imagebutton auto "button big history %s" action ShowMenu("history_test")
-                imagebutton auto "button big show_menu %s" action ShowMenu()
+                hbox:
+                    xalign 1.0
+                    spacing int(100 * pmui.scale)
+                    imagebutton auto "button big history %s" action ShowMenu("history_test")
+                    imagebutton auto "button big show_menu %s" action ShowMenu()
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
 ## the player has not explicitly hidden the interface.
 init python:
     config.overlay_screens.append("quick_menu")
 
-default quick_menu = True
+default pmui.show_quick_menu = True
 
 style quick_button is default
 style quick_button_text is button_text
