@@ -6,7 +6,12 @@
 ## to run before init statements in any other file.
 init offset = -2
 
-define pmui.scale = config.screen_width / 1080.0
+init python in pmui:
+    scale = renpy.config.screen_width / 1080.0
+    def scale_p(x):
+        return int(scale * x)
+    def scale_f(x):
+        return scale * x
 
 ## Colors ######################################################################
 ##
