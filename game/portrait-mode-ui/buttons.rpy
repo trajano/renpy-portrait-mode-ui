@@ -48,3 +48,9 @@ init python in pmui:
         renpy.image("button test insensitive", file)
         renpy.image("button test hover", file)
         renpy.image("button test selected_hover", file)
+
+        file = Solid("#ffffff", xysize=(scale_p(quick_menu_icon_size), scale_p(quick_menu_icon_size)))
+        renpy.image("button big test idle", file)
+        renpy.image("button big test insensitive", file)
+        renpy.image("button big test hover", file)
+        renpy.image("button big test selected_hover", file)

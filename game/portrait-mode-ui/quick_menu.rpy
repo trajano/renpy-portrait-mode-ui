@@ -13,10 +13,8 @@ screen quick_menu():
     style_prefix "quick"
     if pmui.show_quick_menu:
         frame:
-            xpadding int(50 * pmui.scale)
-            hbox:
+            hbox yalign 0.5:
                 xfill True
-                yoffset int((pmui.quick_menu_bar_size - pmui.quick_menu_icon_size)/2 * pmui.scale)
                 hbox:
                     spacing int(100 * pmui.scale)
                     imagebutton auto "button big back %s" action Rollback()
@@ -39,9 +37,11 @@ style quick_button is default
 style quick_button_text is button_text
 
 style quick_frame:
-    background Frame("portrait-mode-ui/ui/bg-quick-menu.png", 0, 0, 0, int(28 * pmui.scale))
+    background Frame("portrait-mode-ui/ui/bg-quick-menu.png", 0, 0, 0, pmui.quick_menu_bar_dropshadow_size)
     xfill True
-    ysize int(pmui.quick_menu_bar_size + 28 * pmui.scale)
+    xpadding pmui.scale_p(50)
+    bottom_padding pmui.scale_p(pmui.quick_menu_bar_dropshadow_size  / pmui.scale)
+    ysize pmui.scale_p(pmui.quick_menu_bar_size) + int(pmui.quick_menu_bar_dropshadow_size / pmui.scale)
     yalign 0.0
 
 style quick_hbox:
