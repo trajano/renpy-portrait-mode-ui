@@ -6,10 +6,6 @@ init offset = -2
 ## image, and text describing the contents of the save slot. A save slot uses
 ## image files in gui/button, like the other kinds of buttons.
 
-## The width and height of thumbnails used by the save slots.
-define config.thumbnail_width = 216
-define config.thumbnail_height = 384
-
 ## The save slot button.
 define gui.slot_button_borders = Borders(9, 9, 9, 9)
 define gui.slot_button_text_size = 30

@@ -16,13 +16,14 @@ screen history_test():
 
     tag menu
 
-    use portrait_game_menu(_("History"), scroll=("vpgrid" if gui.history_height else "viewport"), yinitial=1.0):
+    use portrait_game_menu(_("History"), scroll="viewport"):
         style_prefix "history"
         frame:
             # xpadding int(50 * pmui.scale)
-            xpadding int(50 * pmui.scale)
+            xpadding pmui.scale_p(50)
+            xfill True
             # xsize int((1080 - 50 - 50 - gui.scrollbar_size) * pmui.scale)
-            xsize int((1080 - gui.scrollbar_size) * pmui.scale)
+            # xsize int((1080 - gui.scrollbar_size) * pmui.scale)
             has vbox
             # add Solid("#ffffcc", width=1000, height=30)
             # add Tile("bg grid")
@@ -92,6 +93,9 @@ style history_name:
 
 style history_name_text:
     size pmui.name_text_size
+
+style history_frame:
+    xfill True
 
 style history_text:
     color "#ffffff"

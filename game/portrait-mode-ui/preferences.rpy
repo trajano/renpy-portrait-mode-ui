@@ -17,7 +17,6 @@ screen preferences():
 
     use portrait_game_menu(_("Preferences")):
         vbox:
-            # add Solid("#ffffff7f")
             xfill True
 
             hbox:

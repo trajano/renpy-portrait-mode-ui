@@ -9,9 +9,15 @@ init offset = -2
 init python in pmui:
     scale = renpy.config.screen_width / 1080.0
     def scale_p(x):
-        return int(scale * x)
+        if scale == 1.0:
+            return int(x)
+        else:
+            return int(scale * x)
     def scale_f(x):
-        return scale * x
+        if scale == 1.0:
+            return x
+        else:
+            return scale * x
 
 ## Colors ######################################################################
 ##

@@ -76,20 +76,23 @@ screen portrait_game_menu(title=None, scroll=None, yinitial=0.0, cols = 3):
                 pagekeys True
                 scrollbars "vertical"
                 side_yfill True
-                xfill True
+                child_size (pmui.scale_p(1080-pmui.scrollbar_size), None)
                 yinitial yinitial
                 transclude
         elif scroll == "vpgrid":
-            vpgrid:
-                cols cols
-                mousewheel True
-                draggable True
-                pagekeys True
-                scrollbars "vertical"
-                side_yfill True
-                xfill True
-                yinitial yinitial
-                transclude
+            frame:
+                left_margin pmui.scale_p(50)
+                vpgrid:
+                    cols cols
+                    spacing pmui.scale_p(50)
+                    mousewheel True
+                    draggable True
+                    pagekeys True
+                    scrollbars "vertical"
+                    side_yfill True
+                    xfill True
+                    yinitial yinitial
+                    transclude
         else:
             transclude
         use portrait_game_navigation(title)
