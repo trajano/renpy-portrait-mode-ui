@@ -28,7 +28,10 @@ screen file_slots(title):
         style_prefix "slot"
 
         python:
-            max_saves = int((FileUsedSlots()[0]-1) / pmui.save_columns + 1) * pmui.save_columns
+            if len(FileUsedSlots()) == 0:
+                max_saves = 0
+            else:
+                max_saves = int((FileUsedSlots()[0]-1) / pmui.save_columns + 1) * pmui.save_columns
             if title == _("Save"):
                 max_saves = max_saves + pmui.save_columns
 
