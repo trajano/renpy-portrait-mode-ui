@@ -1,46 +1,24 @@
 init offset = -1
 
-screen vpgrid_test():
-
-    vpgrid:
-
-        cols 2
-        spacing 5
-        draggable True
-        mousewheel True
-
-        scrollbars "vertical"
-
-        # Since we have scrollbars, we have to position the side, rather
-        # than the vpgrid proper.
-        side_xalign 0.5
-
-        for i in range(1, 100):
-
-            textbutton "Button [i]":
-                xysize (200, 50)
-                action Return(i)
-
 ## Quick Game Menu screen ######################################################
 ##
 ## The quick menu is displayed in-game to provide easy access to the out-of-game
 ## menus.
 screen portrait_game_navigation(title):
     style_prefix "gamemenu"
-    frame:
-        has vbox
-        hbox:
-            ysize pmui.quick_menu_bar_size
-            xfill True
+    vbox:
+        frame:
+            xpadding pmui.scale_p(50)
+            bottom_padding pmui.scale_p(pmui.quick_menu_bar_dropshadow_size  / pmui.scale)
+            ysize pmui.scale_p(pmui.quick_menu_bar_size) + int(pmui.quick_menu_bar_dropshadow_size / pmui.scale)
+            hbox yalign 0.5:
+                xfill True
+                hbox:
+                    imagebutton auto "button big exit_to_game %s" action Return()
 
-            hbox yalign 0.5 xoffset int(50 * pmui.scale):
-                spacing int(100 * pmui.scale)
-                imagebutton auto "button big exit_to_game %s" action Return()
-
-            hbox yalign 0.5 xalign 1.0 xoffset int(-50 * pmui.scale):
-                spacing int(100 * pmui.scale)
-                imagebutton auto "button big show_menu %s" action Return()
-
+                hbox:
+                    xalign 1.0
+                    imagebutton auto "button big show_menu %s" action Return()
         null height int((pmui.game_menu_quick_menu_gap_size) * pmui.scale)
 
         grid 5 1 xalign 0.5 xfill True:

@@ -42,7 +42,7 @@ screen file_slots(title):
 
                 has vbox
 
-                add FileScreenshot(slot, empty="empty slot") xalign 0.5
+                add FileScreenshot(slot, empty="empty slot") xalign 0.5 zoom pmui.scale
 
                 text FileTime(slot, format=_("{#file_time}%Y-%m-%d %H:%M"), empty="empty slot"):
                     style "slot_time_text"
