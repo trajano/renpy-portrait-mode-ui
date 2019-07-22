@@ -15,9 +15,10 @@ screen preferences():
 
     tag menu
 
-    use game_menu(_("Preferences"), scroll="viewport"):
-
+    use portrait_game_menu(_("Preferences")):
         vbox:
+            # add Solid("#ffffff7f")
+            xfill True
 
             hbox:
                 box_wrap True

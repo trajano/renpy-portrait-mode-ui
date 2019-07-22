@@ -3,5 +3,6 @@ log.txt
 traceback.txt
 *.rpyc
 *.rpymc
+*.bak
 game/saves/
 game/cache/

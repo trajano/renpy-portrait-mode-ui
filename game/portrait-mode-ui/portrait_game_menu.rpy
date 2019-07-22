@@ -26,9 +26,9 @@ screen vpgrid_test():
 ## The quick menu is displayed in-game to provide easy access to the out-of-game
 ## menus.
 screen portrait_game_navigation(title):
+    style_prefix "gamemenu"
     frame:
         has vbox
-        style_prefix "gamemenu"
         hbox:
             ysize pmui.quick_menu_bar_size
             xfill True
@@ -71,14 +71,14 @@ screen portrait_game_menu(title=None, scroll=None, yinitial=0.0, cols = 3):
     side "c t":
         if scroll == "viewport":
             viewport:
-                    mousewheel True
-                    draggable True
-                    pagekeys True
-                    scrollbars "vertical"
-                    side_yfill True
-                    xfill True
-                    yinitial yinitial
-                    transclude
+                mousewheel True
+                draggable True
+                pagekeys True
+                scrollbars "vertical"
+                side_yfill True
+                xfill True
+                yinitial yinitial
+                transclude
         elif scroll == "vpgrid":
             vpgrid:
                 cols cols
