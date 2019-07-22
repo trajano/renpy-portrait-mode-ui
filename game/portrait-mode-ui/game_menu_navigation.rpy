@@ -49,9 +49,6 @@ screen game_menu_navigation():
                     imagebutton auto "button settings %s" xalign 0.5 action ShowMenu("preferences")
                     textbutton "Settings" action ShowMenu("preferences")
 
-# style gamemenu_frame is quick_frame:
-#     ysize int((pmui.quick_menu_bar_size + pmui.game_menu_quick_menu_gap_size + pmui.game_menu_button_bar_icon_size + pmui.game_menu_button_bar_text_size + 28) * pmui.scale)
-
 style gamemenu_button_text:
     idle_color pmui.idle_color
     selected_color pmui.selected_color
