@@ -73,8 +73,7 @@ define pmui.interface_text_color = '#ffffff'
 
 define pmui.language = "unicode"
 
-## Maximum number of saves.  Must be a multiple of 3 for portrait mode.
-define pmui.max_saves = 99
+## Number of columns to show on the save screen
 define pmui.save_columns = 3
 
 ## The height of horizontal bars, scrollbars, and sliders. The width of vertical

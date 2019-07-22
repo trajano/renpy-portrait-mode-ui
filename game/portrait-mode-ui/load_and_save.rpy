@@ -26,7 +26,13 @@ screen load():
 screen file_slots(title):
     use portrait_game_menu(title, scroll="vpgrid", cols = 3):
         style_prefix "slot"
-        for i in range(pmui.max_saves):
+
+        python:
+            max_saves = int((FileUsedSlots()[0]-1) / pmui.save_columns + 1) * pmui.save_columns
+            if title == _("Save"):
+                max_saves = max_saves + pmui.save_columns
+
+        for i in range(max_saves):
             $ slot = i + 1
             button:
                 action FileAction(slot)
