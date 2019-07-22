@@ -4,8 +4,8 @@ init python:
     config.font_replacement_map["Lato.ttf", True, True] = ("fonts/Lato-BoldItalic.ttf", False, False)
     config.font_replacement_map["Lato.ttf", False, True] = ("fonts/Lato-LightItalic.ttf", False, False)
     # Default font which supports CJK.
-    config.font_replacement_map["SourceHanSans.ttf", False, False] = ("fonts/SourceHanSans-Light.ttf", False, False)
-    config.font_replacement_map["SourceHanSans.ttf", True, False] = ("fonts/SourceHanSans-Bold.otf", False, False)
+    config.font_replacement_map["SourceHanSans.ttf", False, False] = ("fonts/SourceHanSans-Light.ttc", False, False)
+    config.font_replacement_map["SourceHanSans.ttf", True, False] = ("fonts/SourceHanSans-Bold.ttc", False, False)
 
     # Coder font.  Trigged by {tt} tag.
     def coder_font(tag, argument, contents):
