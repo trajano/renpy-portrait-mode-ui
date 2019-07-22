@@ -33,12 +33,12 @@ screen say(who, what):
 
         text what id "what"
 
-    add AlphaMask(SideImage(), "portrait-mode-ui/ui/say-side-mask.png") zoom pmui.scale xalign 0.0 yalign 1.0 alpha 0.2 xoffset int(40.0 * pmui.scale) yoffset int(-125.0 * pmui.scale)
+    add AlphaMask(SideImage(), "portrait-mode-ui/ui/say-side-mask.png") zoom pmui.scale xalign 0.0 yalign 1.0 alpha 0.2 xoffset pmui.scale_p(40) yoffset pmui.scale_p(-125)
 
 
-## Make the namebox available for styling through the Character object.
-init python:
-    config.character_id_prefixes.append('namebox')
+# ## Make the namebox available for styling through the Character object.
+# init python:
+#     config.character_id_prefixes.append('namebox')
 
 style window is default
 style say_label is default
@@ -84,7 +84,7 @@ style say_label:
 style say_dialogue:
     size pmui.text_size * pmui.scale
     # yalign 1.0
-    xpos int(70.0 * pmui.scale)
-    ypos int(1500.0 * pmui.scale)
+    xpos pmui.scale_p(70)
+    ypos pmui.scale_p(1500)
     # yoffset int(-(1920-1500-50-50.0) * pmui.scale)
     xsize int((1080 - 70 - 70) * pmui.scale)

@@ -4,6 +4,7 @@
 # name of the character.
 
 define c = Character("Candace", image="candace")
+define narrator = Character("Me")
 
 
 # The game starts here.
@@ -21,6 +22,7 @@ label start:
     # These display lines of dialogue.
 
     c "You've created a new Ren'Py game."
+    "This is the narrator."
 
     # This shows a character sprite. A placeholder is used, but you can
     # replace it by adding a file named "eileen happy.png" to the images
@@ -50,7 +52,7 @@ label start:
         "NO":
             c "You said no"
 
-    c "Some random dialog to make history scroll."
+    c "Some {b}random{/b} {i}dialog{/i} to make {b}{i}history{/i}{/b} scroll. じーっ・{b}じっ~~{/b}"
     c "Though history is working, I actually don't really like the way it is rendered."
     c "Maybe have a background... in fact make each menu screen have its own background."
     c "The next few remaining bits are the history, save/load, preferences and main menu."
