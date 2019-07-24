@@ -25,9 +25,10 @@ image saybox extra:
         (0,0), AlphaMask(Solid("#77ffff"),"portrait-mode-ui/ui/say-alphamask.png"),
         (0,0), "portrait-mode-ui/ui/say-dropshadow.png"
     )
-    xpos 0.5 xanchor 0.5
-    ypos 0.5 yanchor 0.6
-    easein 0.2 rotate 15
+    xcenter 0.6
+    ycenter 0.5
+    rotate_pad False
+    easein 0.2 rotate 10 yoffset -150 xoffset -20
 
 image saybox namebox:
     Composite(
@@ -39,16 +40,18 @@ image saybox namebox:
     # xpos 0.5 xanchor 0.5
     # ypos 0.5 yanchor 0.6
     # transform_anchor True
-    xcenter 0.6
-    ycenter 0.5
-    easein 0.15 rotate 7.5 # yoffset -440+int(375*0.6)
+    # xanchor  0.5
+    # yanchor  0.5
+    # transform_anchor True
+    rotate_pad False
+    easein 0.15 rotate 7.5 yoffset -120 xoffset -20
 
 image saybox foo:
     Composite(
         (1080, 400),
-        (-20, -440), "saybox extra",
+        (0,0), "saybox extra",
         # (-30, -int(375*0.6)), "saybox namebox",
-        (-30, -440), "saybox namebox",
+        (0, 0), "saybox namebox",
         (0,0), AlphaMask(Solid("#ccffcc"),"portrait-mode-ui/ui/say-alphamask.png"),
         (0,0), "portrait-mode-ui/ui/say-dropshadow.png"
     )
