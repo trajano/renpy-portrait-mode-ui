@@ -12,7 +12,7 @@ init python in pmui:
         if scale == 1.0:
             return int(x)
         else:
-            return int(scale * x)
+            return renpy.absolute(scale * x)
     def scale_f(x):
         if scale == 1.0:
             return x
