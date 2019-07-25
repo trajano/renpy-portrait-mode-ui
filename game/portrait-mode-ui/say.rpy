@@ -23,20 +23,20 @@ screen say(who, what):
         use say_dialogue(who, what)
 
 screen say_dialogue(who, what):
-    style_prefix "say"
+    # style_prefix "say"
 
     zorder 45
+
     window:
         id "window"
+        background DynamicDisplayable(dialogbox, who=
+            Text(who,
+                color = "#000",
+                size = pmui.scale_p(50)
+            )
+        )
 
-        if who is not None:
-
-            window:
-                id "namebox"
-                style "namebox"
-                text who id "who"
-
-        add AlphaMask(SideImage(), "portrait-mode-ui/ui/say-side-mask.png") zoom pmui.scale xalign 0.0 yalign 0.0 alpha 0.2 xoffset pmui.scale_p(30) yoffset pmui.scale_p(-30)
+        # add AlphaMask(SideImage(), "portrait-mode-ui/ui/say-side-mask.png") zoom pmui.scale xalign 0.0 yalign 0.0 alpha 0.2 xoffset pmui.scale_p(30) yoffset pmui.scale_p(-30)
         text what id "what"
 
 
@@ -59,7 +59,7 @@ style say_window:
     xpadding pmui.scale_p(60)
     ypadding pmui.scale_p(60)
     ysize pmui.scale_p(375 - 30 + 120)
-    background "saybox foo"
+    # background "saybox foo"
     # background Solid("#fff", xysize=(1080, 375))
 
     # background Frame(im.MatrixColor("portrait-mode-ui/ui/bg-say.png", im.matrix.opacity(0.9)),
@@ -67,11 +67,11 @@ style say_window:
     #     yoffset=int((-125.0 + (591-495)) * pmui.scale),
     #     yalign=1.0)
 
-style namebox:
-    xalign 0.0
-    yalign 1.0
-    xpos int(75.0 * pmui.scale)
-    ypos int(1475.0 * pmui.scale)
+# style namebox:
+#     xalign 0.0
+#     yalign 1.0
+#     xpos int(75.0 * pmui.scale)
+#     ypos int(1475.0 * pmui.scale)
 
 style say_label:
     yalign 1.0
@@ -99,8 +99,6 @@ image saybox dialogbox:
         (0,0), "portrait-mode-ui/ui/say-dropshadow.png"
     )
 
-transform saybox_namebox_transform:
-    zoom 1.0
 
 image saybox extra:
     Composite(
@@ -114,6 +112,42 @@ image saybox extra:
     # alpha 0.7
     easein 0.2 rotate 15 yoffset pmui.scale_p(-180) xoffset pmui.scale_p(-20)
 
+init python:
+    def namebox(st, at, who=None):
+        return Composite(
+            (pmui.scale_p(1080), pmui.scale_p(375)),
+            (0,0), AlphaMask(Solid("#ff7777"),Frame("portrait-mode-ui/ui/say-alphamask.png")),
+            (0,0), "portrait-mode-ui/ui/say-dropshadow.png",
+            (pmui.scale_p(50),pmui.scale_p(50)), who), None
+    def dialogbox(st, at, who=None):
+        return Composite(
+            (pmui.scale_p(1080), pmui.scale_p(375)),
+            (0,0), "saybox extra",
+            (0, 0), At(
+                Composite(
+                    (pmui.scale_p(1080), pmui.scale_p(375)),
+                    (0,0), AlphaMask(Solid("#ff7777"),Frame("portrait-mode-ui/ui/say-alphamask.png")),
+
+                    (0,0), "portrait-mode-ui/ui/say-dropshadow.png",
+                    (pmui.scale_p(50),pmui.scale_p(50)), who
+                ),
+                saybox_namebox_transform),
+            (0,0), AlphaMask(Solid("#ccffcc"), Frame("portrait-mode-ui/ui/say-alphamask.png")),
+            (0,0), AlphaMask(Solid("#ff77ff"), Frame("portrait-mode-ui/ui/say-alphamask-gradient.png")),
+            (0,0), At(AlphaMask(SideImage(), Frame("portrait-mode-ui/ui/say-alphamask-gradient.png")), saybox_side_image_transform),
+            # (0,0), AlphaMask(SideImage(), "portrait-mode-ui/ui/say-side-mask.png") zoom pmui.scale xalign 0.0 yalign 0.0 alpha 0.2 xoffset pmui.scale_p(30) yoffset pmui.scale_p(-30)
+            (0,0), "portrait-mode-ui/ui/say-dropshadow.png"
+        ), None
+
+transform saybox_side_image_transform:
+    alpha 0.2
+
+transform saybox_namebox_transform:
+    rotate_pad False
+    rotate 0
+    # This one worked
+    easein 0.15 rotate 10 yoffset pmui.scale_p(-140) xoffset pmui.scale_p(-20)
+
 image saybox namebox:
     Composite(
         (pmui.scale_p(1080), pmui.scale_p(375)),
@@ -121,10 +155,7 @@ image saybox namebox:
         (0,0), "portrait-mode-ui/ui/say-dropshadow.png",
         (pmui.scale_p(50),pmui.scale_p(50)), Text("Testing Name", color="#fff", size=50)
     )
-    rotate_pad False
-    rotate 0
-    # This one worked
-    easein 0.15 rotate 10 yoffset pmui.scale_p(-140) xoffset pmui.scale_p(-20)
+    saybox_namebox_transform
 
     # rotate_pad True
     # xoffset -30
@@ -137,16 +168,17 @@ image saybox namebox:
     # yanchor  0.5
     # transform_anchor True
 
-image saybox foo:
-    Composite(
-        (pmui.scale_p(1080), pmui.scale_p(375)),
-        (0,0), "saybox extra",
-        # (-30, -int(375*0.6)), "saybox namebox",
-        (0, 0), "saybox namebox",
-        (0,0), AlphaMask(Solid("#ccffcc"),Frame("portrait-mode-ui/ui/say-alphamask.png")),
-        (0,0), "portrait-mode-ui/ui/say-dropshadow.png"
-    )
-    alpha 0.8
+# image saybox foo:
+#     # Composite(
+#     #     (pmui.scale_p(1080), pmui.scale_p(375)),
+#     #     (0,0), "saybox extra",
+#     #     # (-30, -int(375*0.6)), "saybox namebox",
+#     #     (0, 0), "saybox namebox",
+#     #     (0,0), AlphaMask(Solid("#ccffcc"),Frame("portrait-mode-ui/ui/say-alphamask.png")),
+#     #     (0,0), "portrait-mode-ui/ui/say-dropshadow.png"
+#     # )
+#     DynamicDisplayable(dialogbox, who=Text("hello"))
+#     alpha 0.8
 
 
 style saybox_screen_window is empty
@@ -176,3 +208,21 @@ label saybox_test:
     show screen saybox_screen
     pause
     c "test"
+
+image red = Solid("#f00", xysize=(300,100))
+image green = Solid("#0f0", xysize=(300,100))
+image blue = Solid("#00f", xysize=(300,100))
+
+transform generic_rotate(degs = 0):
+    rotate_pad False
+    anchor (1.0, 1.0)
+    pos (0.5, 0.5)
+    rotate 0
+    linear 2.0 rotate degs
+
+label test_rotate:
+    show blue at generic_rotate(10)
+    show green at generic_rotate(5)
+    show red at generic_rotate(0)
+
+    "Test"

@@ -11,9 +11,9 @@ init offset = -2
 ## Calling gui.init resets the styles to sensible default values, and sets the
 ## width and height of the game.
 init python:
-    #gui.init(1080, 1920)
+    gui.init(1080, 1920)
     # gui.init(720, 1280)
-    gui.init(360, 640)
+    # gui.init(360, 640)
 
 ## Console font style.  This should be set otherwise the computed font size makes
 ## things unreadable.

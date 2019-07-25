@@ -4,7 +4,7 @@
 # The side image for portrait mode should be 1020 x 315 to match the alpha mask.
 # The alpha mask and scaling will be applied by the library.
 image side candace = Composite(
-    (1020, 315),
+    (1080, 375),
     #(1020-800, 0), Crop((0, 300, 800, 315), "candace happy", yoffset=-200)
-    (0, 0), Crop((0, 400, 800, 315), "candace happy", zoom=2.0, xoffset=-300)
+    (0, 0), Crop((0, 400, 800, 375), "candace happy", zoom=2.0, xoffset=-300)
 )
