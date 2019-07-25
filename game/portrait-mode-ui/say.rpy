@@ -36,9 +36,9 @@ screen say_dialogue(who, what):
                 style "namebox"
                 text who id "who"
 
+        add AlphaMask(SideImage(), "portrait-mode-ui/ui/say-side-mask.png") zoom pmui.scale xalign 0.0 yalign 0.0 alpha 0.2 xoffset pmui.scale_p(30) yoffset pmui.scale_p(-30)
         text what id "what"
 
-    # add AlphaMask(SideImage(), "portrait-mode-ui/ui/say-side-mask.png") zoom pmui.scale xalign 0.0 yalign 1.0 alpha 0.2 xoffset pmui.scale_p(40) yoffset pmui.scale_p(-125)
 
 
 # ## Make the namebox available for styling through the Character object.
@@ -80,14 +80,6 @@ style say_label:
     kerning -1
     bold True
 
-style say_dialogue:
-    size pmui.text_size * pmui.scale
-    # yalign 1.0
-    xpos pmui.scale_p(70)
-    ypos pmui.scale_p(1500)
-    # yoffset int(-(1920-1500-50-50.0) * pmui.scale)
-    xsize int((1080 - 70 - 70) * pmui.scale)
-
 
 screen saybox:
     style_prefix "saybox"
@@ -112,26 +104,28 @@ transform saybox_namebox_transform:
 
 image saybox extra:
     Composite(
-        (1080,375),
-        (0,0), AlphaMask(Solid("#77ffff"),"portrait-mode-ui/ui/say-alphamask.png"),
+        (pmui.scale_p(1080), pmui.scale_p(375)),
+        (0,0), AlphaMask(Solid("#77ffff"), Frame("portrait-mode-ui/ui/say-alphamask.png")),
         (0,0), "portrait-mode-ui/ui/say-dropshadow.png"
     )
     xcenter 0.6
     ycenter 0.5
     rotate_pad False
     # alpha 0.7
-    easein 0.2 rotate 15 yoffset -180 xoffset -20
+    easein 0.2 rotate 15 yoffset pmui.scale_p(-180) xoffset pmui.scale_p(-20)
 
 image saybox namebox:
     Composite(
-        (1080,375),
-        (0,0), AlphaMask(Solid("#ff7777"),"portrait-mode-ui/ui/say-alphamask.png"),
+        (pmui.scale_p(1080), pmui.scale_p(375)),
+        (0,0), AlphaMask(Solid("#ff7777"),Frame("portrait-mode-ui/ui/say-alphamask.png")),
         (0,0), "portrait-mode-ui/ui/say-dropshadow.png",
-        (50,50), Text("Testing Name", color="#fff", size=50)
+        (pmui.scale_p(50),pmui.scale_p(50)), Text("Testing Name", color="#fff", size=50)
     )
     rotate_pad False
     rotate 0
-    easein 0.15 rotate 10 yoffset -140 xoffset -20
+    # This one worked
+    easein 0.15 rotate 10 yoffset pmui.scale_p(-140) xoffset pmui.scale_p(-20)
+
     # rotate_pad True
     # xoffset -30
     # yoffset -375-15
@@ -145,11 +139,11 @@ image saybox namebox:
 
 image saybox foo:
     Composite(
-        (1080, 375),
+        (pmui.scale_p(1080), pmui.scale_p(375)),
         (0,0), "saybox extra",
         # (-30, -int(375*0.6)), "saybox namebox",
         (0, 0), "saybox namebox",
-        (0,0), AlphaMask(Solid("#ccffcc"),"portrait-mode-ui/ui/say-alphamask.png"),
+        (0,0), AlphaMask(Solid("#ccffcc"),Frame("portrait-mode-ui/ui/say-alphamask.png")),
         (0,0), "portrait-mode-ui/ui/say-dropshadow.png"
     )
     alpha 0.8
@@ -157,13 +151,24 @@ image saybox foo:
 
 style saybox_screen_window is empty
 
+# style say_dialogue:
+#     size pmui.text_size * pmui.scale
+#     # yalign 1.0
+#     xpos pmui.scale_p(70)
+#     ypos pmui.scale_p(1500)
+#     # yoffset int(-(1920-1500-50-50.0) * pmui.scale)
+#     xsize int((1080 - 70 - 70) * pmui.scale)
+
+
 style say_dialogue:
     color "#f00"
     size pmui.scale_p(60)
-    xpadding 60
-    ypadding 60
+    xmargin pmui.scale_p(60)
+    ymargin pmui.scale_p(60)
     xalign 0.0
     yalign 0.0
+    xfill True
+    yfill True
 
 label saybox_test:
     scene bg cave
