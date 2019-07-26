@@ -49,7 +49,7 @@ style say_window:
     yalign 1.0
     xpadding pmui.scale_p(60)
     ypadding pmui.scale_p(60)
-    ysize pmui.scale_p(375 - 30 + 120)
+    ysize pmui.scale_p(pmui.say_dialog_box_height - 30 * pmui.say_dialog_box_height/375 + pmui.say_dialog_box_bottom_offset)
 
 style say_label:
     color pmui.say_name_text_color
@@ -68,13 +68,6 @@ screen saybox_screen:
         yalign 1.0
         use saybox
 
-image saybox dialogbox:
-    Composite(
-        (1080,375),
-        (0,0), AlphaMask(Solid("#ccffcc"),"portrait-mode-ui/ui/say-alphamask.png"),
-        (0,0), "portrait-mode-ui/ui/say-dropshadow.png"
-    )
-
 init python in pmui:
     from math import sqrt
     from renpy.store import At, SideImage
@@ -82,9 +75,33 @@ init python in pmui:
     from renpy.display.imagelike import Frame, Solid
     from renpy.display.layout import AlphaMask, Composite
 
-    def dialogbox(st, at, who=None):
+    alphamask = Frame(
+        "portrait-mode-ui/ui/say-alphamask.png",
+        60,
+        60,
+        60,
+        60,
+    )
+    # alphamask2 = Frame(
+    #     Frame("portrait-mode-ui/ui/say-alphamask.png", xysize=(200.0 / 375 * 1080,200)),
+    #     # pmui.say_dialog_box_height / 375.0 * 1080.0
+    #     60.0 * say_dialog_box_height / 375,
+    #     60.0 * say_dialog_box_height / 375,
+    #     60.0 * say_dialog_box_height / 375,
+    #     60.0 * say_dialog_box_height / 375,
+    # )
+    # alphamask = Frame("portrait-mode-ui/ui/say-alphamask.png", xysize=(200.0 / 375 * 1080,200))
+    alphamask_gradient = Frame(
+        "portrait-mode-ui/ui/say-alphamask-gradient.png",
+        60,
+        60,
+        60,
+        60,
+    )
+
+    def dialogbox_l(st, at, who=None):
         w = 1080
-        h = 375
+        h = say_dialog_box_height
         z = sqrt(w*w + h*h)
         xoffset = absolute(-((z - w) /2.0 ))
         yoffset = absolute(-((z - h) /2.0 ))
@@ -95,9 +112,49 @@ init python in pmui:
             (0,0), At(
                 Composite(
                     rect_dimensions,
-                    (0,0), AlphaMask(Solid(say_extra_box_color),Frame("portrait-mode-ui/ui/say-alphamask.png")),
+                    (0,0), AlphaMask(Solid(say_extra_box_color), alphamask),
+                    # (0,0), Frame("portrait-mode-ui/ui/say-dropshadow.png"),
+                ),
+                transform_function(
+                    xoffset=xoffset,
+                    yoffset=yoffset,
+                    yoffset_transform=30,
+                    degs = 7.5,
+                    easein = 0.20)
+                ),
+            (0, 0), At(
+                Composite(
+                    rect_dimensions,
+                    (0,0), AlphaMask(Solid(say_name_box_color), alphamask),
+                    # (0,0), Frame("portrait-mode-ui/ui/say-dropshadow.png"),
+                    (scale_p(40), scale_p(40)), who
+                ),
+                transform_function(
+                    xoffset=xoffset,
+                    yoffset=yoffset,
+                    yoffset_transform=30,
+                    degs = 5)
+                ),
+            (0,0), AlphaMask(Solid(say_dialog_box_color_1), alphamask),
+            (0,0), AlphaMask(Solid(say_dialog_box_color_2), alphamask_gradient),
+            # (0,0), At(AlphaMask(SideImage(),  alphamask_gradient), renpy.store.saybox_side_image_transform),
+            # (0,0), Frame("portrait-mode-ui/ui/say-dropshadow.png")
+        ), None
+    def dialogbox(st, at, who=None):
+        w = 1080
+        h = 375
+        z = sqrt(w*w + h*h)
+        xoffset = absolute(-((z - w) /2.0 ))
+        yoffset = absolute(-((z - h) /2.0 ))
+        rect_dimensions = (scale_p(w), scale_p(h))
+        transform_function = renpy.store.saybox_namebox_transform_fixed
+        return Composite(
+            rect_dimensions,
+            (0,0), At(
+                Composite(
+                    rect_dimensions,
+                    (0,0), AlphaMask(Solid(say_extra_box_color), Frame("portrait-mode-ui/ui/say-alphamask.png")),
                     (0,0), Frame("portrait-mode-ui/ui/say-dropshadow.png"),
-                    (scale_p(50), scale_p(50)), who
                 ),
                 transform_function(
                     xoffset=xoffset,

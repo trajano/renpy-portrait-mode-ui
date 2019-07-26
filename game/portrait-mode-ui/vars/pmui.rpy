@@ -11,6 +11,13 @@ define pmui.game_menu_bar_size = 140
 define pmui.text_size = 60
 define pmui.name_text_size = 50
 
+define pmui.say_dialog_box_height = 375
+define pmui.say_dialog_box_bottom_offset = 120
+# define pmui.say_dialog_box_bottom_offset = 30
+# define pmui.say_dialog_box_height = 175
+# define pmui.say_dialog_box_width =  pmui.say_dialog_box_height / 375.0 * 1080.0
+
+
 ## The width and height of thumbnails used by the save slots.
 define config.thumbnail_width = int((1080 - 50 - 50 * pmui.save_columns - pmui.scrollbar_size)/pmui.save_columns)
 define config.thumbnail_height = int(config.thumbnail_width * 16/9)
