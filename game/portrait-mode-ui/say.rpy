@@ -101,7 +101,6 @@ image saybox dialogbox:
         (0,0), "portrait-mode-ui/ui/say-dropshadow.png"
     )
 
-
 image saybox extra:
     Composite(
         (pmui.scale_p(1080), pmui.scale_p(375)),
@@ -116,22 +115,13 @@ image saybox extra:
 
 init -1 python:
     from math import sqrt
-    global last_who
-    last_who = None
     def dialogbox(st, at, who=None):
-        global last_who
-        w = pmui.scale_f(1080)
-        h = pmui.scale_f(375)
+        w = 1080
+        h = 375
         z = sqrt(w*w + h*h)
-        xoffset = absolute(-((z - w) /2.0 ))
-        yoffset = absolute(-((z - h) /2.0 ))
-        # if last_who == who:
-        #     namebox_easein = 0.0
-        #     extra_easein = 0.0
-        # else:
-        namebox_easein = 0.15
-        extra_easein = 0.20
-            # last_who = who
+        xoffset = absolute(-((z - w) / 2))
+        yoffset = absolute(-((z - h) / 2))
+
         return Composite(
             (pmui.scale_p(w), pmui.scale_p(h)),
             (0,0), At(
@@ -139,22 +129,27 @@ init -1 python:
                     (pmui.scale_p(1080), pmui.scale_p(375)),
                     (0,0), AlphaMask(Solid(pmui.say_extra_box_color),Frame("portrait-mode-ui/ui/say-alphamask.png")),
                     (0,0), "portrait-mode-ui/ui/say-dropshadow.png",
-                    (pmui.scale_p(50),pmui.scale_p(50)), who
+                    (pmui.scale_p(50), pmui.scale_p(50)), who
                 ),
-                saybox_namebox_transform(xoffset=xoffset, yoffset=yoffset, yoffset_transform=40, degs = 15, easein = extra_easein)),
+                saybox_namebox_transform(
+                    xoffset = xoffset,
+                    yoffset = yoffset,
+                    yoffset_transform = pmui.say_extra_box_offset,
+                    degs = 15,
+                    easein = pmui.say_extra_box_easein)),
             (0, 0), At(
                 Composite(
                     (pmui.scale_p(1080), pmui.scale_p(375)),
                     (0,0), AlphaMask(Solid(pmui.say_name_box_color),Frame("portrait-mode-ui/ui/say-alphamask.png")),
                     (0,0), "portrait-mode-ui/ui/say-dropshadow.png",
-                    (pmui.scale_p(50),pmui.scale_p(50)), who
+                    (pmui.scale_p(50), pmui.scale_p(50)), who
                 ),
                 saybox_namebox_transform(
-                    xoffset=xoffset,
-                    yoffset=yoffset,
-                    yoffset_transform=40,
+                    xoffset = xoffset,
+                    yoffset = yoffset,
+                    yoffset_transform = pmui.say_name_box_offset,
                     degs = 10,
-                    easein = namebox_easein)
+                    easein = pmui.say_name_box_easein)
                 ),
             (0,0), AlphaMask(Solid(pmui.say_dialog_box_color_1), Frame("portrait-mode-ui/ui/say-alphamask.png")),
             (0,0), AlphaMask(Solid(pmui.say_dialog_box_color_2), Frame("portrait-mode-ui/ui/say-alphamask-gradient.png")),
@@ -165,12 +160,37 @@ init -1 python:
 transform saybox_side_image_transform:
     alpha 0.2
 
-transform saybox_namebox_transform(xoffset=0, yoffset=0, degs = 10, yoffset_transform = 40, easein = 0.15):
+transform saybox_namebox_transform(xoffset, yoffset, degs, yoffset_transform = 40, easein = 0.15):
     rotate_pad True
-    xoffset xoffset
-    yoffset yoffset
+    # on show:
+    #     rotate 0
+    #     xoffset pmui.scale_p(xoffset)
+    #     yoffset pmui.scale_p(yoffset)
+    #     easein easein rotate degs yoffset pmui.scale_p(yoffset-yoffset_transform)
     rotate 0
+    yoffset pmui.scale_p(yoffset)
     easein easein rotate degs yoffset pmui.scale_p(yoffset-yoffset_transform)
+
+transform saybox_namebox_transform2(xoffset=0, yoffset=0, degs = 10, yoffset_transform = 40, easein = 0.15):
+    rotate_pad True
+    xoffset pmui.scale_p(xoffset)
+    on show:
+        rotate 0
+        yoffset pmui.scale_p(yoffset)
+        easein easein rotate degs yoffset pmui.scale_p(yoffset-yoffset_transform)
+    on replace:
+        yoffset pmui.scale_p(yoffset-yoffset_transform)
+        rotate degs
+    on hide:
+        rotate degs
+        yoffset pmui.scale_p(yoffset-yoffset_transform)
+        easein easein rotate 0 yoffset pmui.scale_p(yoffset)
+
+transform saybox_namebox_transform_fixed(xoffset=0, yoffset=0, degs = 10, yoffset_transform = 40, easein = None):
+    rotate_pad True
+    xoffset pmui.scale_p(xoffset)
+    yoffset pmui.scale_p(yoffset-yoffset_transform)
+    rotate degs
 
 image saybox namebox:
     Composite(

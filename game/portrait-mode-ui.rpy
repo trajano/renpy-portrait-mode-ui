@@ -90,4 +90,9 @@ define pmui.say_name_text_bold = True
 define pmui.say_name_text_kerning = -1.0
 define pmui.say_name_box_offset = 20
 define pmui.say_name_box_color = "#f22f0c"
+define pmui.say_name_box_easein = 0.15
 define pmui.say_extra_box_color = "#ff7"
+define pmui.say_extra_box_easein = 0.20
+define pmui.say_extra_box_offset = 20
+
+define config.log = "d:/r/r.log"
