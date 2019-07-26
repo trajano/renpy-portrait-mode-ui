@@ -24,9 +24,14 @@ label start:
     c "You've created a new Ren'Py game."
     "This is the narrator."
     c "This is {b}Candace{/b} again.  It should animate. last_who"
+    window hide
+    pause
     c "This is {b}Candace{/b} again.  It should not animate. last_who"
-    "This is the narrator. It should animate last_who"
-    "This is the narrator. It should not animate last_who"
+    """
+    This is the narrator. It should animate last_who
+
+    This is the narrator. It should not animate last_who
+    """
 
     # This shows a character sprite. A placeholder is used, but you can
     # replace it by adding a file named "eileen happy.png" to the images

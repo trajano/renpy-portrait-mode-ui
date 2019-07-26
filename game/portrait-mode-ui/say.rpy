@@ -18,36 +18,25 @@
 ## https://www.renpy.org/doc/html/screen_special.html#say
 
 screen say(who, what):
-    window:
+    zorder 45
+    fixed:
         yalign 1.0
         use say_dialogue(who, what)
 
 screen say_dialogue(who, what):
     # style_prefix "say"
 
-    zorder 45
-
     window:
         id "window"
-        background DynamicDisplayable(dialogbox, who=
-            Text(who,
-                color = pmui.say_name_text_color,
-                size = pmui.scale_p(pmui.say_name_text_size),
-                bold = pmui.say_name_text_bold,
-                kerning = pmui.say_name_text_kerning
-            )
-        )
-
-        # add AlphaMask(SideImage(), "portrait-mode-ui/ui/say-side-mask.png") zoom pmui.scale xalign 0.0 yalign 0.0 alpha 0.2 xoffset pmui.scale_p(30) yoffset pmui.scale_p(-30)
+        style "say_window"
+        background DynamicDisplayable(pmui.dialogbox, who=Text(who, style = "say_label"))
         text what id "what"
-
-
 
 # ## Make the namebox available for styling through the Character object.
 # init python:
 #     config.character_id_prefixes.append('namebox')
 
-style window is default
+style window is empty
 style say_label is default
 style say_dialogue is default
 style say_thought is say_dialogue
@@ -61,27 +50,12 @@ style say_window:
     xpadding pmui.scale_p(60)
     ypadding pmui.scale_p(60)
     ysize pmui.scale_p(375 - 30 + 120)
-    # background "saybox foo"
-    # background Solid("#fff", xysize=(1080, 375))
-
-    # background Frame(im.MatrixColor("portrait-mode-ui/ui/bg-say.png", im.matrix.opacity(0.9)),
-    #     xysize=(config.screen_width, int(591.0 * pmui.scale)),
-    #     yoffset=int((-125.0 + (591-495)) * pmui.scale),
-    #     yalign=1.0)
-
-# style namebox:
-#     xalign 0.0
-#     yalign 1.0
-#     xpos int(75.0 * pmui.scale)
-#     ypos int(1475.0 * pmui.scale)
 
 style say_label:
-    yalign 1.0
-    size pmui.name_text_size * pmui.scale
-    color pmui.name_color
-    kerning -1
-    bold True
-
+    color pmui.say_name_text_color
+    size pmui.scale_p(pmui.say_name_text_size)
+    bold pmui.say_name_text_bold
+    kerning pmui.say_name_text_kerning
 
 screen saybox:
     style_prefix "saybox"
@@ -101,60 +75,54 @@ image saybox dialogbox:
         (0,0), "portrait-mode-ui/ui/say-dropshadow.png"
     )
 
-image saybox extra:
-    Composite(
-        (pmui.scale_p(1080), pmui.scale_p(375)),
-        (0,0), AlphaMask(Solid("#77ffff"), Frame("portrait-mode-ui/ui/say-alphamask.png")),
-        (0,0), "portrait-mode-ui/ui/say-dropshadow.png"
-    )
-    xcenter 0.6
-    ycenter 0.5
-    rotate_pad False
-    # alpha 0.7
-    easein 0.2 rotate 15 yoffset pmui.scale_p(-180) xoffset pmui.scale_p(-pmui.say_name_box_offset)
-
-init -1 python:
+init python in pmui:
     from math import sqrt
+    from renpy.store import At, SideImage
+    from renpy.display.core import absolute
+    from renpy.display.imagelike import Frame, Solid
+    from renpy.display.layout import AlphaMask, Composite
+
     def dialogbox(st, at, who=None):
         w = 1080
         h = 375
         z = sqrt(w*w + h*h)
-        xoffset = absolute(-((z - w) / 2))
-        yoffset = absolute(-((z - h) / 2))
-
+        xoffset = absolute(-((z - w) /2.0 ))
+        yoffset = absolute(-((z - h) /2.0 ))
+        rect_dimensions = (scale_p(w), scale_p(h))
+        transform_function = renpy.store.saybox_namebox_transform
         return Composite(
-            (pmui.scale_p(w), pmui.scale_p(h)),
+            rect_dimensions,
             (0,0), At(
                 Composite(
-                    (pmui.scale_p(1080), pmui.scale_p(375)),
-                    (0,0), AlphaMask(Solid(pmui.say_extra_box_color),Frame("portrait-mode-ui/ui/say-alphamask.png")),
-                    (0,0), "portrait-mode-ui/ui/say-dropshadow.png",
-                    (pmui.scale_p(50), pmui.scale_p(50)), who
+                    rect_dimensions,
+                    (0,0), AlphaMask(Solid(say_extra_box_color),Frame("portrait-mode-ui/ui/say-alphamask.png")),
+                    (0,0), Frame("portrait-mode-ui/ui/say-dropshadow.png"),
+                    (scale_p(50), scale_p(50)), who
                 ),
-                saybox_namebox_transform(
-                    xoffset = xoffset,
-                    yoffset = yoffset,
-                    yoffset_transform = pmui.say_extra_box_offset,
+                transform_function(
+                    xoffset=xoffset,
+                    yoffset=yoffset,
+                    yoffset_transform=40,
                     degs = 15,
-                    easein = pmui.say_extra_box_easein)),
+                    easein = 0.20)
+                ),
             (0, 0), At(
                 Composite(
-                    (pmui.scale_p(1080), pmui.scale_p(375)),
-                    (0,0), AlphaMask(Solid(pmui.say_name_box_color),Frame("portrait-mode-ui/ui/say-alphamask.png")),
-                    (0,0), "portrait-mode-ui/ui/say-dropshadow.png",
-                    (pmui.scale_p(50), pmui.scale_p(50)), who
+                    rect_dimensions,
+                    (0,0), AlphaMask(Solid(say_name_box_color), Frame("portrait-mode-ui/ui/say-alphamask.png")),
+                    (0,0), Frame("portrait-mode-ui/ui/say-dropshadow.png"),
+                    (scale_p(50), scale_p(50)), who
                 ),
-                saybox_namebox_transform(
-                    xoffset = xoffset,
-                    yoffset = yoffset,
-                    yoffset_transform = pmui.say_name_box_offset,
-                    degs = 10,
-                    easein = pmui.say_name_box_easein)
+                transform_function(
+                    xoffset=xoffset,
+                    yoffset=yoffset,
+                    yoffset_transform=40,
+                    degs = 10)
                 ),
-            (0,0), AlphaMask(Solid(pmui.say_dialog_box_color_1), Frame("portrait-mode-ui/ui/say-alphamask.png")),
-            (0,0), AlphaMask(Solid(pmui.say_dialog_box_color_2), Frame("portrait-mode-ui/ui/say-alphamask-gradient.png")),
-            (0,0), At(AlphaMask(SideImage(), Frame("portrait-mode-ui/ui/say-alphamask-gradient.png")), saybox_side_image_transform),
-            (0,0), "portrait-mode-ui/ui/say-dropshadow.png"
+            (0,0), AlphaMask(Solid(say_dialog_box_color_1), Frame("portrait-mode-ui/ui/say-alphamask.png")),
+            (0,0), AlphaMask(Solid(say_dialog_box_color_2), Frame("portrait-mode-ui/ui/say-alphamask-gradient.png")),
+            (0,0), At(AlphaMask(SideImage(), Frame("portrait-mode-ui/ui/say-alphamask-gradient.png")), renpy.store.saybox_side_image_transform),
+            (0,0), Frame("portrait-mode-ui/ui/say-dropshadow.png")
         ), None
 
 transform saybox_side_image_transform:
@@ -166,6 +134,12 @@ transform saybox_namebox_transform(xoffset, yoffset, degs, yoffset_transform = 4
     xoffset pmui.scale_p(xoffset)
     yoffset pmui.scale_p(yoffset)
     easein easein rotate degs yoffset pmui.scale_p(yoffset-yoffset_transform)
+
+transform saybox_namebox_transform_fixed(xoffset, yoffset, degs, yoffset_transform = 40):
+    rotate_pad True
+    rotate 0
+    xoffset pmui.scale_p(xoffset)
+    rotate degs yoffset pmui.scale_p(yoffset-yoffset_transform)
 
 transform saybox_namebox_transform2(xoffset=0, yoffset=0, degs = 10, yoffset_transform = 40, easein = 0.15):
     rotate_pad True
