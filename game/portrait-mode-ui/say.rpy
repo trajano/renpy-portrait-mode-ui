@@ -162,14 +162,14 @@ transform saybox_side_image_transform:
 
 transform saybox_namebox_transform(xoffset, yoffset, degs, yoffset_transform = 40, easein = 0.15):
     rotate_pad True
-    # on show:
-    #     rotate 0
-    #     xoffset pmui.scale_p(xoffset)
-    #     yoffset pmui.scale_p(yoffset)
-    #     easein easein rotate degs yoffset pmui.scale_p(yoffset-yoffset_transform)
-    rotate 0
-    yoffset pmui.scale_p(yoffset)
-    easein easein rotate degs yoffset pmui.scale_p(yoffset-yoffset_transform)
+    on show:
+        rotate 0
+        xoffset pmui.scale_p(xoffset)
+        yoffset pmui.scale_p(yoffset)
+        easein easein rotate degs yoffset pmui.scale_p(yoffset-yoffset_transform)
+    # rotate 0
+    # yoffset pmui.scale_p(yoffset)
+    # easein easein rotate degs yoffset pmui.scale_p(yoffset-yoffset_transform)
 
 transform saybox_namebox_transform2(xoffset=0, yoffset=0, degs = 10, yoffset_transform = 40, easein = 0.15):
     rotate_pad True
