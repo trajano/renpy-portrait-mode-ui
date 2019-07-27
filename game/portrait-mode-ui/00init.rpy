@@ -18,6 +18,37 @@ init python in pmui:
             return x
         else:
             return scale * x
+    if renpy.config.screen_width > renpy.config.screen_height:
+        # landscape
+        ctc_offset = 0
+        ctc_scale = 0.5
+        say_dialog_box_bottom_offset = 15
+        say_dialog_box_height = 200
+        say_dialog_box_offset = 45
+        say_dialog_text_size = 20
+        say_extra_box_offset = 20
+        say_extra_box_rotation = 7.5
+        say_extra_box_yoffset_transform = 0
+        say_name_box_offset = 45
+        say_name_box_rotation = 5
+        say_name_box_yoffset_transform = 5
+        say_name_text_size = 20
+
+    else:
+        # portrait
+        ctc_offset = -60
+        ctc_scale = 1
+        say_dialog_box_bottom_offset = 120
+        say_dialog_box_height = 375
+        say_dialog_box_offset = 60
+        say_dialog_text_size = 60
+        say_extra_box_offset = 20
+        say_extra_box_rotation = 15
+        say_extra_box_yoffset_transform = 40
+        say_name_box_offset = 50
+        say_name_box_rotation = 10
+        say_name_box_yoffset_transform = 40
+        say_name_text_size = 40
 
 ## Colors ######################################################################
 ##
