@@ -27,7 +27,6 @@ screen choice(items):
         style_prefix "choicesay"
 
     zorder 40
-
     frame:
         vbox:
             for i in items:
