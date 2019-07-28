@@ -12,12 +12,9 @@
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#choice
 
-image rect choice alphamask:
-    "rect alphamask"
-image rect choice dropshadow:
-    "rect dropshadow"
-image rect choice alphamask gradient:
-    "rect alphamask gradient"
+image rect choice alphamask = At(Frame(im.Crop("portrait-mode-ui/ui/say-alphamask.png",(0,0,900,375)), 60, 60, 60, 60), pmui_scale)
+image rect choice dropshadow = At(Frame(im.Crop("portrait-mode-ui/ui/say-dropshadow.png",(0,0,900,375)), left=60), pmui_scale)
+image rect choice select alphamask = At(Frame(im.Crop("portrait-mode-ui/ui/select-alphamask.png",(0,0,900,315)), 30, 30, 0, 30), pmui_scale)
 
 screen choice(items):
 
@@ -29,6 +26,7 @@ screen choice(items):
     zorder 40
     frame:
         vbox:
+            # spacing pmui.scale_p(5)
             for i in items:
                 textbutton i.caption action i.action
 
@@ -52,21 +50,20 @@ image choice frame:
 image choice selected frame:
     Frame(
         Composite(
-            (900, 375),
-            (0,0), AlphaMask(Solid(pmui.choice_selected_box_color), "rect choice alphamask"),
-            (0,0), "rect choice dropshadow",
+            (900, 315),
+            (0,0), AlphaMask(Solid(pmui.choice_selected_box_color), "rect choice select alphamask"),
         ),
-        60, 60, 60, 60
+        30, 30, 30, 30
     )
 
 style choice_frame:
     background "choice frame"
     xalign 1.0
-    xsize pmui.scale_p(648)
+    xsize pmui.scale_p(pmui.choice_width)
     yalign 0.5
-    left_padding pmui.scale_p(25)
-    top_padding pmui.scale_p(25)
-    bottom_padding pmui.scale_p(25)
+    left_padding pmui.scale_p(pmui.choice_padding)
+    top_padding pmui.scale_p(pmui.choice_padding)
+    bottom_padding pmui.scale_p(pmui.choice_padding)
 
 style choicesay_frame is choice_frame:
     yalign 1.0
@@ -76,9 +73,16 @@ style choicesay_frame is choice_frame:
 style choice_button is default:
     selected_background "choice selected frame"
     hover_background "choice selected frame"
-    left_padding pmui.scale_p(50)
-    top_padding pmui.scale_p(50)
-    bottom_padding pmui.scale_p(50)
+    # left_padding pmui.scale_p(5)
+    # top_padding pmui.scale_p(5)
+    # bottom_padding pmui.scale_p(5)
+    left_margin pmui.scale_p(pmui.choice_selected_padding)
+    top_margin pmui.scale_p(pmui.choice_selected_padding)
+    bottom_margin pmui.scale_p(pmui.choice_selected_padding)
+
+    left_padding pmui.scale_p(pmui.choice_selected_padding)
+    top_padding pmui.scale_p(pmui.choice_selected_padding)
+    bottom_padding pmui.scale_p(pmui.choice_selected_padding)
     yalign 0.5
     xfill True
     color pmui.choice_text_color
@@ -90,6 +94,6 @@ style choice_button_text is default:
     color pmui.choice_text_color
     hover_color "#000000"
     selected_color "#000000"
-    size pmui.scale_p(50)
+    size pmui.scale_p(pmui.say_dialog_text_size)
 
 style choicesay_button_text is choice_button_text
