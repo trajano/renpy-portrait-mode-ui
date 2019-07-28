@@ -17,12 +17,14 @@
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#say
 
-transform pmui_scale:
-    zoom pmui.scale
+# Rounded rectangles
 
-image rect say alphamask = At(Frame("portrait-mode-ui/ui/say-alphamask.png", 60, 60, 60, 60, xysize=(1080, pmui.say_dialog_box_height)), pmui_scale)
-image rect say dropshadow = At(Frame("portrait-mode-ui/ui/say-dropshadow.png", 60, 60, 60, 60, xysize=(1080, pmui.say_dialog_box_height)), pmui_scale)
-image rect say alphamask gradient = At(Frame("portrait-mode-ui/ui/say-alphamask-gradient.png", 60, 60, 60, 60, xysize=(1080, pmui.say_dialog_box_height)), pmui_scale)
+image rect say alphamask:
+    "rect alphamask"
+image rect say dropshadow:
+    "rect dropshadow"
+image rect say alphamask gradient:
+    "rect alphamask gradient"
 
 screen say(who, what):
     zorder 45
@@ -63,17 +65,6 @@ style say_label:
     size pmui.scale_p(pmui.say_name_text_size)
     bold pmui.say_name_text_bold
     kerning pmui.say_name_text_kerning
-
-screen saybox:
-    style_prefix "saybox"
-    window:
-        text "Xyz" size 90 color "#000"
-
-screen saybox_screen:
-    style_prefix "saybox_screen"
-    window:
-        yalign 1.0
-        use saybox
 
 init python in pmui:
     from math import sqrt
@@ -134,34 +125,11 @@ transform saybox_namebox_transform(xoffset, yoffset, degs, yoffset_transform = 4
     yoffset pmui.scale_p(yoffset)
     easein easein rotate degs yoffset pmui.scale_p(yoffset-yoffset_transform)
 
-transform saybox_namebox_transform_fixed(xoffset, yoffset, degs, yoffset_transform = 40):
-    rotate_pad True
-    rotate 0
-    xoffset pmui.scale_p(xoffset)
-    rotate degs yoffset pmui.scale_p(yoffset-yoffset_transform)
-
-transform saybox_namebox_transform2(xoffset=0, yoffset=0, degs = 10, yoffset_transform = 40, easein = 0.15):
-    rotate_pad True
-    xoffset pmui.scale_p(xoffset)
-    on show:
-        rotate 0
-        yoffset pmui.scale_p(yoffset)
-        easein easein rotate degs yoffset pmui.scale_p(yoffset-yoffset_transform)
-    on replace:
-        yoffset pmui.scale_p(yoffset-yoffset_transform)
-        rotate degs
-    on hide:
-        rotate degs
-        yoffset pmui.scale_p(yoffset-yoffset_transform)
-        easein easein rotate 0 yoffset pmui.scale_p(yoffset)
-
 transform saybox_namebox_transform_fixed(xoffset=0, yoffset=0, degs = 10, yoffset_transform = 40, easein = None):
     rotate_pad True
     xoffset pmui.scale_p(xoffset)
     yoffset pmui.scale_p(yoffset-yoffset_transform)
     rotate degs
-
-style saybox_screen_window is empty
 
 style say_dialogue:
     color pmui.say_dialog_text_color

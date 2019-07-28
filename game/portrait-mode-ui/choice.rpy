@@ -12,6 +12,13 @@
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#choice
 
+image rect choice alphamask:
+    "rect alphamask"
+image rect choice dropshadow:
+    "rect dropshadow"
+image rect choice alphamask gradient:
+    "rect alphamask gradient"
+
 screen choice(items):
 
     if renpy.get_say_image_tag() == None:
@@ -23,7 +30,6 @@ screen choice(items):
 
     frame:
         vbox:
-            spacing int(10 * pmui.scale)
             for i in items:
                 textbutton i.caption action i.action
 
@@ -34,14 +40,34 @@ define config.narrator_menu = True
 style choice_say_button is choice_button
 style choice_button_text is button_text
 
+image choice frame:
+    Frame(
+        Composite(
+            (900, 375),
+            (0,0), AlphaMask(Solid(pmui.choice_box_color), "rect choice alphamask"),
+            (0,0), "rect choice dropshadow",
+        ),
+        60, 60, 60, 60
+    )
+
+image choice selected frame:
+    Frame(
+        Composite(
+            (900, 375),
+            (0,0), AlphaMask(Solid(pmui.choice_selected_box_color), "rect choice alphamask"),
+            (0,0), "rect choice dropshadow",
+        ),
+        60, 60, 60, 60
+    )
+
 style choice_frame:
-    background Frame("portrait-mode-ui/ui/bg-choice.png", 50, 50, 50,  100)
+    background "choice frame"
     xalign 1.0
-    xsize int(648 * pmui.scale)
+    xsize pmui.scale_p(648)
     yalign 0.5
-    left_padding int(25 * pmui.scale)
-    top_padding int(50 * pmui.scale)
-    bottom_padding int(75 * pmui.scale)
+    left_padding pmui.scale_p(25)
+    top_padding pmui.scale_p(25)
+    bottom_padding pmui.scale_p(25)
 
 style choicesay_frame is choice_frame:
     yalign 1.0
@@ -49,22 +75,24 @@ style choicesay_frame is choice_frame:
     yoffset int(-240.0  * pmui.scale)
 
 style choice_button is default:
-    selected_background Frame("portrait-mode-ui/ui/bg-choice-selected.png", 380-345+10, 10, 5, 10)
-    hover_background Frame("portrait-mode-ui/ui/bg-choice-selected.png", 380-345+10, 10, 5, 10)
-    left_padding int((380-345+10) * pmui.scale)
-    top_padding int(30 * pmui.scale)
-    bottom_padding int(60 * pmui.scale)
+    selected_background "choice selected frame"
+    hover_background "choice selected frame"
+    # selected_background Frame("portrait-mode-ui/ui/bg-choice-selected.png", 380-345+10, 10, 5, 10)
+    # hover_background Frame("portrait-mode-ui/ui/bg-choice-selected.png", 380-345+10, 10, 5, 10)
+    left_padding pmui.scale_p(50)
+    top_padding pmui.scale_p(50)
+    bottom_padding pmui.scale_p(50)
     yalign 0.5
     xfill True
-    color pmui.choice_color
+    color pmui.choice_text_color
     hover_color "#ffff00"
 
 style choicesay_button is choice_button
 
 style choice_button_text is default:
-    color pmui.choice_color
+    color pmui.choice_text_color
     hover_color "#000000"
     selected_color "#000000"
-    size 50 * pmui.scale
+    size pmui.scale_p(50)
 
 style choicesay_button_text is choice_button_text

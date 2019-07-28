@@ -50,6 +50,10 @@ init python in pmui:
         say_name_box_yoffset_transform = 40
         say_name_text_size = 40
 
+transform pmui_scale:
+    zoom pmui.scale
+
+
 ## Colors ######################################################################
 ##
 ## The colors of text in the interface.

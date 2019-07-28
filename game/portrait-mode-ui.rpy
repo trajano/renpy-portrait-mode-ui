@@ -92,4 +92,9 @@ define pmui.say_name_text_bold = True
 define pmui.say_name_text_color = "#ffc"
 define pmui.say_name_text_kerning = -1.0
 
+define pmui.choice_box_color = "#000000cf"
+define pmui.choice_text_color = "#eee"
+define pmui.choice_selected_box_color = "#eee"
+define pmui.choice_selected_text_color = "#111"
+
 # define config.log = "d:/r/r.log"
