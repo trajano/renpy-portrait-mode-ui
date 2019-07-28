@@ -19,9 +19,12 @@
 
 # Rounded rectangles
 
-image rect say alphamask = At(Frame("portrait-mode-ui/ui/say-alphamask.png", 60, 60, 60, 60, xysize=(1080, pmui.say_dialog_box_height)), pmui_scale)
-image rect say dropshadow = At(Frame("portrait-mode-ui/ui/say-dropshadow.png", 60, 60, 60, 60, xysize=(1080, pmui.say_dialog_box_height)), pmui_scale)
-image rect say alphamask gradient = At(Frame("portrait-mode-ui/ui/say-alphamask-gradient.png", 60, 60, 60, 60, xysize=(1080, pmui.say_dialog_box_height)), pmui_scale)
+image rect say alphamask = At(Frame("portrait-mode-ui/ui/say-alphamask.png", 60, 60, 60, 60), pmui_scale)
+image rect say dropshadow = At(Frame("portrait-mode-ui/ui/say-dropshadow.png", 60, 60, 60, 60), pmui_scale)
+image rect say alphamask gradient = At(Frame("portrait-mode-ui/ui/say-alphamask-gradient.png", 60, 60, 60, 60), pmui_scale)
+# image rect say alphamask = At(Frame("portrait-mode-ui/ui/say-alphamask.png", 60, 60, 60, 60, xysize=(1080, pmui.say_dialog_box_height)), pmui_scale)
+# image rect say dropshadow = At(Frame("portrait-mode-ui/ui/say-dropshadow.png", 60, 60, 60, 60, xysize=(1080, pmui.say_dialog_box_height)), pmui_scale)
+# image rect say alphamask gradient = At(Frame("portrait-mode-ui/ui/say-alphamask-gradient.png", 60, 60, 60, 60, xysize=(1080, pmui.say_dialog_box_height)), pmui_scale)
 
 screen say(who, what):
     zorder 45
@@ -51,7 +54,7 @@ style namebox is default
 style namebox_label is say_label
 
 style say_window:
-    xfill True
+    # xfill True
     yalign 1.0
     xpadding pmui.scale_p(pmui.say_dialog_box_offset)
     ypadding pmui.scale_p(pmui.say_dialog_box_offset)
@@ -71,10 +74,10 @@ init python in pmui:
     from renpy.display.layout import AlphaMask, Composite
 
     def dialogbox(st, at, who=None):
-        w = 1080
-        h = 170
         # w = 1080
-        # h = 375
+        # h = 170
+        w = 1080
+        h = 375
         z = sqrt(w*w + h*h)
         xoffset = absolute(-((z - w) /2.0 ))
         yoffset = absolute(-((z - h) /2.0 ))
