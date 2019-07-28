@@ -81,12 +81,12 @@ define pmui.save_columns = 3
 ## bars, scrollbars, and sliders.
 define pmui.scrollbar_size = 50
 
-define pmui.say_dialog_box_color_1 = "#87734e"
+define pmui.say_dialog_box_color_1 = "#87734edf"
 define pmui.say_dialog_box_color_2 = "#5e5133"
 define pmui.say_dialog_text_color = "#eee"
-define pmui.say_extra_box_color = "#ff7"
+define pmui.say_extra_box_color = "#ff77"
 define pmui.say_extra_box_easein = 0.20
-define pmui.say_name_box_color = "#f22f0c"
+define pmui.say_name_box_color = "#f22f0caf"
 define pmui.say_name_box_easein = 0.15
 define pmui.say_name_text_bold = True
 define pmui.say_name_text_color = "#ffc"

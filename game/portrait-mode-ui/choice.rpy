@@ -77,8 +77,6 @@ style choicesay_frame is choice_frame:
 style choice_button is default:
     selected_background "choice selected frame"
     hover_background "choice selected frame"
-    # selected_background Frame("portrait-mode-ui/ui/bg-choice-selected.png", 380-345+10, 10, 5, 10)
-    # hover_background Frame("portrait-mode-ui/ui/bg-choice-selected.png", 380-345+10, 10, 5, 10)
     left_padding pmui.scale_p(50)
     top_padding pmui.scale_p(50)
     bottom_padding pmui.scale_p(50)
