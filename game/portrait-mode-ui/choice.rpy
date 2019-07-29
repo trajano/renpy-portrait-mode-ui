@@ -38,9 +38,13 @@ screen choice(items):
     zorder 40
     frame:
         vbox:
-            # spacing pmui.scale_p(5)
             for i in items:
                 textbutton i.caption action i.action
+        at choice_appear
+
+transform choice_appear:
+    xpos 1.0 xanchor 0.0
+    easein 0.25 xalign 1.0
 
 ## When this is true, menu captions will be spoken by the narrator. When false,
 ## menu captions will be displayed as empty buttons.
