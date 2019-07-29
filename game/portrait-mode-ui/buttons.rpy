@@ -39,7 +39,7 @@ init python in pmui:
                         im.matrix.tint(color.rgb[0],color.rgb[1],color.rgb[2]) *
                         im.matrix.opacity(color.alpha)
                     ),
-                    scale)
+                    scale * big_button_scale)
                 )
 
     if renpy.variant("pc"):

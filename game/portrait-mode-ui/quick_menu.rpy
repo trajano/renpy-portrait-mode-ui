@@ -16,13 +16,12 @@ screen quick_menu():
             hbox yalign 0.5:
                 xfill True
                 hbox:
-                    spacing int(100 * pmui.scale)
+                    spacing int(100 * pmui.scale * pmui.big_button_scale)
                     imagebutton auto "button big back %s" action Rollback()
                     imagebutton auto "button big auto_forward %s" action Skip() alternate Skip(fast=True, confirm=True)
-
                 hbox:
                     xalign 1.0
-                    spacing int(100 * pmui.scale)
+                    spacing int(100 * pmui.scale * pmui.big_button_scale)
                     imagebutton auto "button big history %s" action ShowMenu("history_test")
                     imagebutton auto "button big show_menu %s" action ShowMenu()
 
@@ -36,12 +35,19 @@ default pmui.show_quick_menu = True
 style quick_button is default
 style quick_button_text is button_text
 
+image ui bg quick_menu = Composite(
+    (60, 75),
+    (0, 0), Solid(pmui.quick_menu_box_color, ysize=60),
+    (0, 61), im.Crop("portrait-mode-ui/ui/rect-dropshadow.png", 45, 135, 60, 15)
+)
+
+
 style quick_frame:
-    background Frame("portrait-mode-ui/ui/bg-quick-menu.png", 0, 0, 0, pmui.quick_menu_bar_dropshadow_size)
+    background Frame("ui bg quick_menu", 0, 0, 0, 15)
     xfill True
-    xpadding pmui.scale_p(50)
+    xpadding pmui.scale_p(50 * pmui.big_button_scale)
     bottom_padding pmui.scale_p(pmui.quick_menu_bar_dropshadow_size  / pmui.scale)
-    ysize pmui.scale_p(pmui.quick_menu_bar_size) + int(pmui.quick_menu_bar_dropshadow_size / pmui.scale)
+    ysize pmui.scale_p(pmui.quick_menu_bar_size * pmui.big_button_scale) + int(pmui.quick_menu_bar_dropshadow_size / pmui.scale)
     yalign 0.0
 
 style quick_hbox:

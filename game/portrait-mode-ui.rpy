@@ -12,7 +12,7 @@ init offset = -2
 ## width and height of the game.
 init python:
     gui.init(1080, 1920)
-    #gui.init(1280, 720)
+    # gui.init(1280, 720)
     # gui.init(720, 1280)
     # gui.init(360, 640)
 
@@ -96,5 +96,5 @@ define pmui.choice_box_color = "#000000cf"
 define pmui.choice_text_color = "#eee"
 define pmui.choice_selected_box_color = "#eee"
 define pmui.choice_selected_text_color = "#111"
-
+define pmui.quick_menu_box_color = "#000000af"
 # define config.log = "d:/r/r.log"

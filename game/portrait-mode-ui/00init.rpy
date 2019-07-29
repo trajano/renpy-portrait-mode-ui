@@ -38,6 +38,7 @@ init python in pmui:
         say_name_box_rotation = 5
         say_name_box_yoffset_transform = 5
         say_name_text_size = 20
+        big_button_scale = 0.45
 
     else:
         # portrait
@@ -59,10 +60,13 @@ init python in pmui:
         say_name_box_rotation = 10
         say_name_box_yoffset_transform = 20
         say_name_text_size = 40
+        big_button_scale = 1.0
 
 transform pmui_scale:
     zoom pmui.scale
 
+transform pmui_scale_r:
+    zoom 1.0/pmui.scale
 
 ## Colors ######################################################################
 ##

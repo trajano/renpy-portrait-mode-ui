@@ -12,18 +12,19 @@ screen game_menu_navigation():
 
     style_prefix "gamemenu"
     frame:
-        xpadding int(50 * pmui.scale)
+        # xpadding int(50 * pmui.scale )
         vbox:
             hbox:
+                style "quick_frame"
                 xfill True
-                yoffset int((pmui.quick_menu_bar_size - pmui.quick_menu_icon_size)/2 * pmui.scale)
+                # yoffset int((pmui.quick_menu_bar_size - pmui.quick_menu_icon_size)/2 * pmui.scale)
                 hbox:
-                    spacing int(100 * pmui.scale)
+                    spacing int(100 * pmui.scale * pmui.big_button_scale)
                     imagebutton auto "button big exit_to_game %s" action Return()
 
                 hbox:
                     xalign 1.0
-                    spacing int(100 * pmui.scale)
+                    spacing int(100 * pmui.scale * pmui.big_button_scale)
                     imagebutton auto "button big show_menu %s" action Return()
             grid 5 1:
                 xfill True
