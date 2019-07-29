@@ -42,8 +42,8 @@ init python in pmui:
     else:
         # portrait
         choice_width = 648
-        choice_padding = 15
-        choice_selected_padding = 15
+        choice_padding = 25
+        choice_selected_padding = 20
         ctc_offset = -60
         ctc_scale = 1
         ctc_xoffset = 900

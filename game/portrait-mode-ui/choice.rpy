@@ -24,9 +24,9 @@
 # image rect choice dropshadow = At(Frame("portrait-mode-ui/ui/rect-dropshadow.png", 45, 45, 45, 45), pmui_scale)
 # image rect choice select alphamask = At(Frame("portrait-mode-ui/ui/rect-alphamask-no-padding.png", 30, 30, 0, 30), pmui_scale)
 
-image rect choice alphamask = At(Frame(im.Crop("portrait-mode-ui/ui/rect-alphamask.png", (0, 0, 105, 150)), top=45, left=45, bottom=45), pmui_scale)
-image rect choice dropshadow = At(Frame(im.Crop("portrait-mode-ui/ui/rect-dropshadow.png", (0, 0, 105, 150)), top=45, left=45, bottom=45), pmui_scale)
-image rect choice select alphamask = At(Frame(im.Crop("portrait-mode-ui/ui/rect-alphamask-no-padding.png", (0, 0, 90, 120)), top=30, left=30, bottom=30), pmui_scale)
+image rect choice alphamask = Frame(im.Crop("portrait-mode-ui/ui/rect-alphamask.png", (0, 0, 105, 150)), top=45, left=45, bottom=45)
+image rect choice dropshadow = Frame(im.Crop("portrait-mode-ui/ui/rect-dropshadow.png", (0, 0, 105, 150)), top=45, left=45, bottom=45)
+image rect choice select alphamask = Frame(im.Crop("portrait-mode-ui/ui/rect-alphamask-no-padding.png", (0, 0, 90, 120)), top=30, left=30, bottom=30)
 
 screen choice(items):
 
@@ -52,22 +52,17 @@ style choice_button_text is button_text
 image choice frame:
     Frame(
         Composite(
-            (900, 375),
-            (0,0), AlphaMask(Solid(pmui.choice_box_color), "rect choice alphamask"),
-            (0,0), "rect choice dropshadow",
+            (105, 150),
+            (0, 0), AlphaMask(Solid(pmui.choice_box_color), "portrait-mode-ui/ui/rect-alphamask.png"),
+            (0, 0), "portrait-mode-ui/ui/rect-dropshadow.png",
         ),
-        60, 60, 60, 60
+        top=45, left=45, bottom=45, right=0
     )
+    zoom pmui.scale
 
 image choice selected frame:
-    Frame(
-        Composite(
-            (900, 315),
-            # (0,0), AlphaMask(Solid(pmui.choice_selected_box_color), "rect choice select alphamask"),
-            (0,0), AlphaMask(Solid(pmui.choice_selected_box_color), "rect choice select alphamask"),
-        ),
-        30, 30, 30, 30
-    )
+    AlphaMask(Solid(pmui.choice_selected_box_color), "rect choice select alphamask")
+    zoom pmui.scale
 
 style choice_frame:
     background "choice frame"
