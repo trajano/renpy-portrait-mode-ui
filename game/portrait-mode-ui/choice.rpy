@@ -51,18 +51,27 @@ style choice_button_text is button_text
 
 image choice frame:
     Frame(
-        Composite(
-            (105, 150),
-            (0, 0), AlphaMask(Solid(pmui.choice_box_color), "portrait-mode-ui/ui/rect-alphamask.png"),
-            (0, 0), "portrait-mode-ui/ui/rect-dropshadow.png",
+        At(
+            Composite(
+                (105, 150),
+                (0, 0), AlphaMask(Solid(pmui.choice_box_color), "portrait-mode-ui/ui/rect-alphamask.png"),
+                (0, 0), "portrait-mode-ui/ui/rect-dropshadow.png",
+            ),
+            pmui_scale
         ),
-        top=45, left=45, bottom=45, right=0
+        top=45 / pmui.scale, left=45 / pmui.scale, bottom=45 / pmui.scale, right=45 / pmui.scale
     )
-    zoom pmui.scale
+    # zoom pmui.scale
 
 image choice selected frame:
-    AlphaMask(Solid(pmui.choice_selected_box_color), "rect choice select alphamask")
-    zoom pmui.scale
+    Frame(
+        At(
+            AlphaMask(Solid(pmui.choice_selected_box_color), "rect choice select alphamask"),
+            pmui_scale,
+        ),
+        top=30 / pmui.scale, left=30 / pmui.scale, bottom=30 / pmui.scale, right=30 / pmui.scale
+    )
+    # zoom pmui.scale
 
 style choice_frame:
     background "choice frame"
@@ -75,7 +84,7 @@ style choice_frame:
 
 style choicesay_frame is choice_frame:
     yalign 1.0
-    bottom_padding 75 + int(220 * pmui.scale)
+    bottom_padding pmui.scale_p(220 + 75)
     yoffset int(-240.0  * pmui.scale)
 
 style choice_button is default:
