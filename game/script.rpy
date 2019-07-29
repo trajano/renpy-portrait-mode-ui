@@ -19,34 +19,35 @@ label start:
 
     show candace happy
 
-    # These display lines of dialogue.
+    # # These display lines of dialogue.
 
-    c "You've created a new Ren'Py game."
-    "This is the narrator."
-    c "This is {b}Candace{/b} again.  It should animate. last_who"
-    window hide
-    pause
-    c "This is {b}Candace{/b} again.  It should not animate. last_who"
-    """
-    This is the narrator. It should animate last_who
+    # c "You've created a new Ren'Py game."
+    # "This is the narrator."
+    # c "This is {b}Candace{/b} again.  It should animate. last_who"
+    # window hide
+    # pause
+    # c "This is {b}Candace{/b} again.  It should not animate. last_who"
+    # """
+    # This is the narrator. It should animate last_who
 
-    This is the narrator. It should not animate last_who
-    """
+    # This is the narrator. It should not animate last_who
+    # """
 
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
-    python:
-        povname = renpy.input("What is your name?")
-        povname = povname.strip()
+    # # This shows a character sprite. A placeholder is used, but you can
+    # # replace it by adding a file named "eileen happy.png" to the images
+    # # directory.
+    # python:
+    #     povname = renpy.input("What is your name?")
+    #     povname = povname.strip()
 
-    c "Hi [povname]!"
+    # c "Hi [povname]!"
 
-    c "Once you add a story, pictures, and music, you can release it to the world!"
+    # c "Once you add a story, pictures, and music, you can release it to the world!"
 
     c "I like {code}coding{/code}!"
 
-    c "Making sure that the {tt}xsize{/tt} of theiii dialogue is correct by putting iniiiii extra {tt}i{/tt}s."
+    # c "Making sure that the {tt}xsize{/tt} of theiii dialogue is correct by putting iniiiii extra {tt}i{/tt}s."
+    # c "Making sure that the {tt}xsize{/tt} of theiii dialogue is correct by putting iniiiii putting iniiiii putting iniiiii iniiiii putting iniiiii iniiiii putting iniiiii iniiiii putting iniiiii extra {tt}i{/tt}s."
 
     menu:
         "yES, I'd like that very very much":

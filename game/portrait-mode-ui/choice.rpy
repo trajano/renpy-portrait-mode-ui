@@ -12,9 +12,21 @@
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#choice
 
-image rect choice alphamask = At(Frame(im.Crop("portrait-mode-ui/ui/say-alphamask.png",(0,0,900,375)), 60, 60, 60, 60), pmui_scale)
-image rect choice dropshadow = At(Frame(im.Crop("portrait-mode-ui/ui/say-dropshadow.png",(0,0,900,375)), left=60), pmui_scale)
-image rect choice select alphamask = At(Frame(im.Crop("portrait-mode-ui/ui/select-alphamask.png",(0,0,900,315)), 30, 30, 0, 30), pmui_scale)
+# image rect choice alphamask = At(Frame(im.Crop("portrait-mode-ui/ui/say-alphamask.png",(0,0,900,375)), 60, 60, 60, 60), pmui_scale)
+# image rect choice dropshadow = At(Frame(im.Crop("portrait-mode-ui/ui/say-dropshadow.png",(0,0,900,375)), left=60), pmui_scale)
+# image rect choice select alphamask = At(Frame(im.Crop("portrait-mode-ui/ui/select-alphamask.png",(0,0,900,315)), 30, 30, 0, 30), pmui_scale)
+
+# image rect choice alphamask = At(Frame("portrait-mode-ui/ui/say-alphamask.png", 60, 60, 60, 60), pmui_scale)
+# image rect choice dropshadow = At(Frame("portrait-mode-ui/ui/say-dropshadow.png", left=60), pmui_scale)
+# image rect choice select alphamask = At(Frame("portrait-mode-ui/ui/select-alphamask.png", 30, 30, 0, 30), pmui_scale)
+
+# image rect choice alphamask = At(Frame("portrait-mode-ui/ui/rect-alphamask.png", 45, 45, 45, 45), pmui_scale)
+# image rect choice dropshadow = At(Frame("portrait-mode-ui/ui/rect-dropshadow.png", 45, 45, 45, 45), pmui_scale)
+# image rect choice select alphamask = At(Frame("portrait-mode-ui/ui/rect-alphamask-no-padding.png", 30, 30, 0, 30), pmui_scale)
+
+image rect choice alphamask = At(Frame(im.Crop("portrait-mode-ui/ui/rect-alphamask.png", (0, 0, 105, 150)), top=45, left=45, bottom=45), pmui_scale)
+image rect choice dropshadow = At(Frame(im.Crop("portrait-mode-ui/ui/rect-dropshadow.png", (0, 0, 105, 150)), top=45, left=45, bottom=45), pmui_scale)
+image rect choice select alphamask = At(Frame(im.Crop("portrait-mode-ui/ui/rect-alphamask-no-padding.png", (0, 0, 90, 120)), top=30, left=30, bottom=30), pmui_scale)
 
 screen choice(items):
 
@@ -51,6 +63,7 @@ image choice selected frame:
     Frame(
         Composite(
             (900, 315),
+            # (0,0), AlphaMask(Solid(pmui.choice_selected_box_color), "rect choice select alphamask"),
             (0,0), AlphaMask(Solid(pmui.choice_selected_box_color), "rect choice select alphamask"),
         ),
         30, 30, 30, 30

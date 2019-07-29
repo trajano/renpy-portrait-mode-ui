@@ -18,14 +18,18 @@ init python in pmui:
             return x
         else:
             return scale * x
-    choice_width = renpy.config.screen_width * 0.6
     if renpy.config.screen_width > renpy.config.screen_height:
         # landscape
+        choice_width = renpy.config.screen_width * 0.6
+        choice_padding = 40
+        choice_selected_padding = 25
         ctc_offset = 0
         ctc_scale = 0.5
+        ctc_xoffset = 800
         say_dialog_box_bottom_offset = 15
         say_dialog_box_height = 200
         say_dialog_box_offset = 45
+        say_dialog_box_width = 900
         say_dialog_text_size = 20
         say_extra_box_offset = 20
         say_extra_box_rotation = 7.5
@@ -34,26 +38,27 @@ init python in pmui:
         say_name_box_rotation = 5
         say_name_box_yoffset_transform = 5
         say_name_text_size = 20
-        choice_padding = 5
-        choice_selected_padding = 5
 
     else:
         # portrait
+        choice_width = 648
+        choice_padding = 15
+        choice_selected_padding = 15
         ctc_offset = -60
         ctc_scale = 1
+        ctc_xoffset = 900
         say_dialog_box_bottom_offset = 120
         say_dialog_box_height = 375
         say_dialog_box_offset = 60
+        say_dialog_box_width = 1080
         say_dialog_text_size = 60
         say_extra_box_offset = 20
         say_extra_box_rotation = 15
-        say_extra_box_yoffset_transform = 40
+        say_extra_box_yoffset_transform = 20
         say_name_box_offset = 50
         say_name_box_rotation = 10
-        say_name_box_yoffset_transform = 40
+        say_name_box_yoffset_transform = 20
         say_name_text_size = 40
-        choice_padding = 50
-        choice_selected_padding = 25
 
 transform pmui_scale:
     zoom pmui.scale
