@@ -16,87 +16,90 @@ screen preferences():
     tag menu
 
     use portrait_game_menu(_("Preferences")):
-        vbox:
-            xfill True
+        frame:
+            xpadding int(50 * pmui.scale)
 
-            hbox:
-                box_wrap True
+            vbox:
+                xfill True
 
-                if renpy.variant("pc"):
+                hbox:
+                    box_wrap True
+
+                    if renpy.variant("pc"):
+
+                        vbox:
+                            style_prefix "radio"
+                            label _("Display")
+                            textbutton _("Window") action Preference("display", "window")
+                            textbutton _("Fullscreen") action Preference("display", "fullscreen")
 
                     vbox:
                         style_prefix "radio"
-                        label _("Display")
-                        textbutton _("Window") action Preference("display", "window")
-                        textbutton _("Fullscreen") action Preference("display", "fullscreen")
+                        label _("Rollback Side")
+                        textbutton _("Disable") action Preference("rollback side", "disable")
+                        textbutton _("Left") action Preference("rollback side", "left")
+                        textbutton _("Right") action Preference("rollback side", "right")
 
-                vbox:
-                    style_prefix "radio"
-                    label _("Rollback Side")
-                    textbutton _("Disable") action Preference("rollback side", "disable")
-                    textbutton _("Left") action Preference("rollback side", "left")
-                    textbutton _("Right") action Preference("rollback side", "right")
+                    vbox:
+                        style_prefix "check"
+                        label _("Skip")
+                        textbutton _("Unseen Text") action Preference("skip", "toggle")
+                        textbutton _("After Choices") action Preference("after choices", "toggle")
+                        textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
 
-                vbox:
-                    style_prefix "check"
-                    label _("Skip")
-                    textbutton _("Unseen Text") action Preference("skip", "toggle")
-                    textbutton _("After Choices") action Preference("after choices", "toggle")
-                    textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
+                    ## Additional vboxes of type "radio_pref" or "check_pref" can be
+                    ## added here, to add additional creator-defined preferences.
 
-                ## Additional vboxes of type "radio_pref" or "check_pref" can be
-                ## added here, to add additional creator-defined preferences.
+                null height (4 * gui.pref_spacing)
 
-            null height (4 * gui.pref_spacing)
+                hbox:
+                    style_prefix "slider"
+                    box_wrap True
 
-            hbox:
-                style_prefix "slider"
-                box_wrap True
+                    vbox:
 
-                vbox:
+                        label _("Text Speed")
 
-                    label _("Text Speed")
+                        bar value Preference("text speed")
 
-                    bar value Preference("text speed")
+                        label _("Auto-Forward Time")
 
-                    label _("Auto-Forward Time")
+                        bar value Preference("auto-forward time")
 
-                    bar value Preference("auto-forward time")
+                    vbox:
 
-                vbox:
+                        if config.has_music:
+                            label _("Music Volume")
 
-                    if config.has_music:
-                        label _("Music Volume")
+                            hbox:
+                                bar value Preference("music volume")
 
-                        hbox:
-                            bar value Preference("music volume")
+                        if config.has_sound:
 
-                    if config.has_sound:
+                            label _("Sound Volume")
 
-                        label _("Sound Volume")
+                            hbox:
+                                bar value Preference("sound volume")
 
-                        hbox:
-                            bar value Preference("sound volume")
-
-                            if config.sample_sound:
-                                textbutton _("Test") action Play("sound", config.sample_sound)
+                                if config.sample_sound:
+                                    textbutton _("Test") action Play("sound", config.sample_sound)
 
 
-                    if config.has_voice:
-                        label _("Voice Volume")
+                        if config.has_voice:
+                            label _("Voice Volume")
 
-                        hbox:
-                            bar value Preference("voice volume")
+                            hbox:
+                                bar value Preference("voice volume")
 
-                            if config.sample_voice:
-                                textbutton _("Test") action Play("voice", config.sample_voice)
+                                if config.sample_voice:
+                                    textbutton _("Test") action Play("voice", config.sample_voice)
 
-                    if config.has_music or config.has_sound or config.has_voice:
-                        null height gui.pref_spacing
+                        if config.has_music or config.has_sound or config.has_voice:
+                            null height gui.pref_spacing
 
-                        textbutton _("Mute All"):
-                            action Preference("all mute", "toggle")
-                            style "mute_all_button"
+                            textbutton _("Mute All"):
+                                action Preference("all mute", "toggle")
+                                style "mute_all_button"
 
 
 style pref_label is gui_label
@@ -131,6 +134,7 @@ style pref_label:
 
 style pref_label_text:
     yalign 1.0
+    size pmui.scale_f(60)
 
 style pref_vbox:
     xsize 190
@@ -143,7 +147,8 @@ style radio_button:
     foreground "gui/button/radio_[prefix_]foreground.png"
 
 style radio_button_text:
-    properties gui.button_text_properties("radio_button")
+    # properties gui.button_text_properties("radio_button")
+    size pmui.scale_f(60)
 
 style check_vbox:
     spacing gui.pref_button_spacing
@@ -153,7 +158,8 @@ style check_button:
     foreground "gui/button/check_[prefix_]foreground.png"
 
 style check_button_text:
-    properties gui.button_text_properties("check_button")
+    # properties gui.button_text_properties("check_button")
+    size pmui.scale_f(60)
 
 style slider_slider:
     xsize 296
@@ -164,7 +170,8 @@ style slider_button:
     left_margin 9
 
 style slider_button_text:
-    properties gui.button_text_properties("slider_button")
+    # properties gui.button_text_properties("slider_button")
+    size pmui.scale_f(90)
 
 style slider_vbox:
     xsize 380
